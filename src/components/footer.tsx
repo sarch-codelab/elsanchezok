@@ -1,4 +1,5 @@
 import { profile } from "@/data/site";
+import { IconArrowUp, IconArrowUpRight } from "./icons";
 import { LocalTime } from "./local-time";
 
 export function Footer() {
@@ -10,9 +11,9 @@ export function Footer() {
             <p className="meta text-muted">¿Construimos algo juntos?</p>
             <a
               href={`mailto:${profile.email}`}
-              className="serif-italic link-line mt-2 inline-flex text-[clamp(1.5rem,4vw,2.75rem)] leading-none"
+              className="serif-italic link-line mt-2 inline-flex items-center gap-3 text-[clamp(1.5rem,4vw,2.75rem)] leading-none"
             >
-              {profile.email} <span aria-hidden className="ml-3 text-[0.6em]">↗</span>
+              {profile.email} <IconArrowUpRight className="size-[0.6em]" />
             </a>
           </div>
 
@@ -25,7 +26,7 @@ export function Footer() {
               aria-hidden
               className="transition-transform duration-300 group-hover:-translate-y-1"
             >
-              ↑
+              <IconArrowUp className="size-3.5" />
             </span>
           </a>
         </div>

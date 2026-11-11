@@ -8,6 +8,7 @@ import {
 } from "motion/react";
 import { useState } from "react";
 import { profile, projects } from "@/data/site";
+import { IconArrowRight, IconArrowUpRight, IconMinus } from "./icons";
 import { ProjectCover } from "./project-cover";
 import { SectionHeading } from "./section-heading";
 
@@ -89,7 +90,11 @@ export function Projects() {
                             : "border-line group-hover:border-ink"
                         }`}
                       >
-                        {isOpen ? "−" : "↗"}
+                        {isOpen ? (
+                          <IconMinus className="size-3.5" />
+                        ) : (
+                          <IconArrowUpRight className="size-3.5" />
+                        )}
                       </span>
                     </span>
                   </button>
@@ -127,8 +132,8 @@ export function Projects() {
                                 key={highlight}
                                 className="flex gap-2 text-[0.9rem] leading-snug"
                               >
-                                <span aria-hidden className="mt-[2px] text-muted">
-                                  →
+                                <span aria-hidden className="mt-0.5 text-muted">
+                                  <IconArrowRight className="size-3" />
                                 </span>
                                 {highlight}
                               </li>
@@ -156,9 +161,10 @@ export function Projects() {
                               href={project.url}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="link-line meta mt-2 inline-flex text-ink"
+                              className="link-line meta mt-2 inline-flex items-center gap-1 text-ink"
                             >
-                              Ver proyecto en vivo <span aria-hidden>↗</span>
+                              Ver proyecto en vivo{" "}
+                              <IconArrowUpRight className="ml-1 size-3" />
                             </a>
                           )}
                         </div>
@@ -192,9 +198,9 @@ export function Projects() {
             href={profile.socials[0].href}
             target="_blank"
             rel="noopener noreferrer"
-            className="link-line text-ink"
+            className="link-line inline-flex items-center gap-1 text-ink"
           >
-            Sígueme en GitHub <span aria-hidden>↗</span>
+            Sígueme en GitHub <IconArrowUpRight className="size-3" />
           </a>
         </p>
       </div>
