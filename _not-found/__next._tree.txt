@@ -1,4 +1,4 @@
-:HL["/elsanchezok/_next/static/chunks/1f43rv5pzc-4d.css","style"]
+:HL["/elsanchezok/_next/static/chunks/1brbafqe86hec.css","style"]
 2:[["children",{"s":"__PAGE__","h":160}]]
 1:[["children",{"s":"/_not-found","h":96,"c":"$Q2"}]]
-0:{"b":"Dd-8JW47IQU9MwJiq_3yS","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
+0:{"b":"PAE_cNuunGSMOyJrD9RJP","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
