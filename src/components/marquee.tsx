@@ -9,9 +9,11 @@ export function Marquee({
   fast?: boolean;
   className?: string;
 }) {
+  // Se repite lo suficiente para que en pantallas anchas (1920+) no quede hueco.
+  const repeated = [...items, ...items, ...items];
   const row = (key: string) => (
     <div key={key} className="flex shrink-0 items-center" aria-hidden={key === "b"}>
-      {items.map((item, i) => (
+      {repeated.map((item, i) => (
         <span key={`${key}-${item}-${i}`} className="flex items-center">
           <span className="display px-6 text-[clamp(1.5rem,3.6vw,3rem)] leading-none">
             {item}
@@ -31,6 +33,8 @@ export function Marquee({
       >
         {row("a")}
         {row("b")}
+        {row("c")}
+        {row("d")}
       </div>
     </div>
   );

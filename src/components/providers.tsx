@@ -6,8 +6,7 @@ import { SmoothScroll } from "./smooth-scroll";
 
 export function Providers({ children }: { children: ReactNode }) {
   return (
-    // "never": la página anima siempre, aunque el sistema pida reducir movimiento.
-    <MotionConfig reducedMotion="never">
+    <MotionConfig reducedMotion="user">
       <SmoothScroll>{children}</SmoothScroll>
     </MotionConfig>
   );

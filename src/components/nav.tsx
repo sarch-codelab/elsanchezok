@@ -40,16 +40,28 @@ export function Nav() {
   }, []);
 
   useEffect(() => {
+    // No pisar el bloqueo del preloader.
+    if (document.body.dataset.preloader === "active") return;
     document.body.style.overflow = open ? "hidden" : "";
-    // Detiene la inercia mientras el menú a pantalla completa está abierto.
     if (lenis) {
       if (open) lenis.stop();
       else lenis.start();
     }
     return () => {
+      if (document.body.dataset.preloader === "active") return;
       document.body.style.overflow = "";
     };
   }, [open, lenis]);
+
+  // Cerrar menú móvil con Escape.
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
 
   return (
     <>
@@ -115,6 +127,9 @@ export function Nav() {
         {open && (
           <motion.div
             id="menu-movil"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Menú de navegación"
             className="fixed inset-0 z-[80] flex flex-col bg-paper px-5 pb-8 pt-5 sm:px-8"
             initial={{ clipPath: "inset(0 0 100% 0)" }}
             animate={{ clipPath: "inset(0 0 0% 0)" }}

@@ -61,35 +61,35 @@ export const stackGroups = [
     title: "Frontend",
     description:
       "Interfaces accesibles y responsivas, escritas con componentes reutilizables y CSS moderno.",
-    items: ["HTML5", "CSS3", "JavaScript", "TypeScript", "React", "Next.js", "Tailwind CSS", "Framer Motion"],
+    items: ["HTML5", "CSS3", "JavaScript", "TypeScript", "React", "Next.js", "Tailwind CSS", "Motion"],
   },
   {
     id: "backend",
     title: "Backend",
     description:
       "APIs REST, autenticación y lógica de servidor. Código ordenado, validado y fácil de leer.",
-    items: ["Node.js", "Express", "Python", "Java", "APIs REST", "JWT"],
+    items: ["Node.js", "Express", "Python", "Supabase", "APIs REST", "JWT"],
   },
   {
     id: "ia",
     title: "Inteligencia Artificial",
     description:
       "Integración de modelos de lenguaje y automatización inteligente en productos reales, no solo demos.",
-    items: ["Groq API", "LLMs", "Prompt Engineering", "Agentes", "APIs de IA"],
+    items: ["Groq API", "LLMs", "Prompt Engineering", "Telegram Bot API"],
   },
   {
     id: "datos",
     title: "Datos",
     description:
       "Modelado relacional, consultas SQL y persistencia. Datos limpios antes que pantallas bonitas.",
-    items: ["MySQL", "PostgreSQL", "SQL", "MongoDB", "Prisma"],
+    items: ["SQLite", "PostgreSQL", "Prisma", "pyzbar"],
   },
   {
     id: "herramientas",
     title: "Herramientas",
     description:
       "El flujo diario: versionar, depurar, diseñar y publicar sin fricción.",
-    items: ["Git", "GitHub", "VS Code", "Figma", "Linux", "Vercel", "Postman"],
+    items: ["Git", "GitHub", "VS Code", "Vercel", "Linux"],
   },
 ];
 
