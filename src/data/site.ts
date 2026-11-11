@@ -14,15 +14,14 @@ export const profile = {
   headlineAccent: "en formación",
   tagline:
     "Tercero de bachillerato en Informática con orientación en Programación. Diseño y construyo interfaces que se sienten simples, rápidas y bien acabadas — y cada vez más, sistemas que aprenden.",
-  location: "Disponible en remoto",
+  location: "San Pedro Sula, Honduras · Disponible en remoto",
   email: "joseph.sanchez@iteesa.edu.hn",
   availability: "Abierto a proyectos y prácticas",
   year: "2026",
   education: "3ro de bachillerato · Informática",
   orientation: "Orientación en Programación",
   socials: [
-    { label: "GitHub", handle: "@joseph", href: "https://github.com/" },
-    { label: "LinkedIn", handle: "/in/joseph", href: "https://www.linkedin.com/" },
+    { label: "GitHub", handle: "@elSanchezok", href: "https://github.com/elSanchezok" },
     {
       label: "Instagram",
       handle: "@elsanchezok",

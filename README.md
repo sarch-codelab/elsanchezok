@@ -1,6 +1,8 @@
 # Portafolio de Joseph
 
-Portafolio personal en blanco y negro, construido con Next.js 16 (App Router), TypeScript, Tailwind CSS v4 y Motion. Pensado para un estudiante de tercero de bachillerato en Informática con orientación en Programación.
+Portafolio de Joseph Sánchez — estudiante de 3ro de bachillerato en Informática con orientación en Programación, San Pedro Sula, Honduras. Construido con **Next.js 16 (App Router)**, **TypeScript**, **Tailwind CSS v4**, **Motion** y **Three.js**. Tema oscuro morado (`#160b28`) con acento lila.
+
+Vive en: **https://sarch-codelab.github.io/elsanchezok/**
 
 ## Ejecutar en local
 
@@ -9,68 +11,70 @@ npm install
 npm run dev
 ```
 
-Abre http://localhost:3000
+Abre http://localhost:3000/elsanchezok
 
-## Compilar
+## Compilar (export estático para GitHub Pages)
 
 ```bash
-npm run build
-npm start
+npm run build   # genera ./out
+npm start       # sirve el export (no next start con output:export)
 ```
+
+> Nota: `next/font/google` necesita internet. En CI funciona; en sandbox sin Google Fonts usa `NEXT_FONT_GOOGLE_MOCKED_RESPONSES` o cambia a `next/font/local` temporalmente.
 
 ## Qué editar
 
-Casi todo el contenido vive en un solo archivo: [`src/data/site.ts`](src/data/site.ts).
+Todo el contenido editable está en **[`src/data/site.ts`](src/data/site.ts)**:
 
 | Qué | Dónde |
 | --- | --- |
-| Nombre, rol, frase, correo, disponibilidad | `profile` |
+| Nombre, apellido, rol, tagline, correo (`joseph.sanchez@iteesa.edu.hn`), ubicación (San Pedro Sula), disponibilidad | `profile` |
 | Cifras del hero | `stats` |
-| Texto y datos de "Sobre mí" | `about` |
+| Texto y datos de “Sobre mí” | `about` (lead, paragraphs, facts) |
 | Tecnologías por categoría | `stackGroups` |
-| Proyectos (título, resumen, logros, stack) | `projects` |
+| Proyectos (título, resumen, logros, stack, url) | `projects` |
 | Línea de tiempo | `timeline` |
-| Redes (Instagram ya apunta a @elsanchezok) | `profile.socials` |
+| Redes — GitHub: `@elSanchezok`, Instagram: `@elsanchezok` (LinkedIn no disponible) | `profile.socials` |
 | Método de trabajo | `process` |
-
-### Cambios obligatorios antes de publicar
-
-- `profile.email` — hoy es `hola@joseph.dev`, un marcador de posición.
-- `profile.socials` — Instagram ya está configurado; GitHub y LinkedIn siguen siendo marcadores de posición.
-- Las cifras y fechas de `stats` y `timeline` deben reflejar la realidad.
 
 ### Imágenes
 
-- **Fondo del hero:** `public/hero-bg.webp`. Es la primera imagen que carga la página: el preloader espera a que esté lista antes de mostrar las animaciones.
-- **Retrato:** `public/joseph.webp` (blanco y negro). Para cambiarlo, guarda otra imagen con el mismo nombre; el encuadre es `4/5` y usa escala de grises desde CSS.
-- **Firma:** dos versiones de la misma firma (Joseph Sánchez). `public/firma.webp` es la cromada para fondos oscuros y aparece en el preloader y al cierre de Contacto; `public/firma-tinta.webp` es la invertida para papel y firma el final de "Sobre mí". Ambas salen del archivo original con el fondo transparente recortado.
+- **Fondo del hero:** `public/hero-bg.webp` — el preloader espera a que cargue.
+- **Retrato:** `public/joseph.webp` — ahora a **color** (se quitó el filtro `grayscale`). 920×920 WebP real (31 KB). Cambia el archivo por otro con el mismo nombre; encuadre `4/5`.
+- **Firma:** `public/firma.webp` + `public/firma-tinta.webp` — versiones para fondo oscuro / claro (Joseph Sánchez).
+- **EVA-01:** `public/eva-01.webp` — 524×403, WebP real. Si no te gusta la referencia, reemplázalo por otra ilustración/foto (respeta licencias).
+- **OG (Open Graph):** `public/og.png` — imagen 1200×630 que aparece cuando compartes el link en WhatsApp / X / LinkedIn. Es la vista previa del sitio; actualízala si cambias nombre o tagline.
 
 ### Portadas de proyectos
 
-No hay capturas reales: las portadas son patrones abstractos generados con CSS en [`project-cover.tsx`](src/components/project-cover.tsx). Cada proyecto tiene un `pattern` (`grid`, `type`, `dots`, `lines`, `diagonal`, `orbit`). Cuando tengas imágenes reales, reemplaza ese componente por `<Image />`.
+`src/components/project-cover.tsx` genera patrones abstractos según `pattern` (`diagonal`, `orbit`, `grid`...). Cuando tengas capturas reales, reemplaza ese componente por `<Image />` con tus screenshots.
 
 ## Detalles técnicos
 
-- **Tema:** blanco y negro puro con un botón que invierte toda la paleta (`Oscuro` / `Claro`). Se guarda en `localStorage`.
-- **Fondo del hero:** imagen a sangre completa con veladuras; el bloque es siempre oscuro y la navegación se aclara mientras está encima.
-- **Laboratorio 3D:** escultura WebGL en blanco y negro (Three.js) con nudo toroidal, malla exterior y partículas. Se importa bajo demanda cuando la sección se acerca al viewport, se pausa fuera de pantalla y se puede arrastrar con el puntero o el dedo. Antes de cargar Three.js comprueba si hay WebGL: si el navegador no lo expone, muestra una vista estática en malla (y el distintivo pasa a "Estático") en lugar de dejar un hueco o un error en consola.
-- **Tipografía:** Anton (display), Instrument Serif (acentos), Archivo (texto) y JetBrains Mono (etiquetas), vía `next/font`.
-- **Animaciones:** reveals al hacer scroll, marquesinas CSS, acordeones y vista previa flotante de proyectos. Se ejecutan siempre, incluso con la opción de sistema "reducir movimiento" activada (decisión explícita del proyecto).
-- **Scroll suave:** Lenis con inercia (`lerp: 0.085`, rueda suave y enlaces internos animados). También funciona con "reducir movimiento" activado (`respectReducedMotion: false`). El menú móvil y el preloader detienen la inercia mientras están abiertos.
-- **Accesibilidad:** secciones semánticas, `aria-expanded` en acordeones, foco visible y formulario con etiquetas.
-- **Contacto:** el formulario arma un `mailto:`; no requiere backend. El botón "Copiar correo" usa el portapapeles.
-- **Grano y rejilla:** superposiciones decorativas en CSS, sin imágenes.
+- **Tema:** morado oscuro `#160b28` + acento `#b9a6e8`. Botón `Oscuro/Claro` invierte paleta y guarda en `localStorage` (`joseph-theme`), con script anti-flash en `layout.tsx`.
+- **Hero:** texto gigante “PORTAFOLIO” en lila detrás del retrato (`text-stroke-accent`, `clamp(6rem,34vw,62rem)`), veladuras y `grid-lines` sobre `hero-bg.webp`.
+- **Laboratorio 3D:** nudo toroidal + malla + partículas con **Three.js** (lazy, pausa fuera de viewport, fallback estático si no hay WebGL).
+- **Tipografía:** Anton (display), Instrument Serif (acentos), Archivo (texto), JetBrains Mono (meta) vía `next/font/google`.
+- **Animaciones:** `Reveal` on-scroll, marquesinas CSS continuas (triplicadas para 1920+), acordeones y preview flotante. Respetan `prefers-reduced-motion`.
+- **Scroll:** **Lenis** (`lerp: 0.085`) con `respectReducedMotion: true`. Preloader y menú detienen inercia (`lenis.stop()`).
+- **Iconografía:** SVG propio en `src/components/icons.tsx` (sin emojis unicode).
+- **Contacto:** formulario → `mailto:` a `joseph.sanchez@iteesa.edu.hn` + “Copiar correo”.
+- **SEO:** `metadataBase`, OG `summary_large_image`, `canonical`, `robots`, `themeColor` adaptativo. `sitemap`/`robots.txt` vía `next-sitemap` si se añade.
 
 ## Estructura
 
 ```
 src/
-  app/            layout, página y estilos globales
-  components/     secciones, scroll suave y piezas de interfaz
-  data/site.ts    contenido editable
+  app/            layout.tsx, page.tsx, globals.css
+  components/     hero, about, stack, projects, timeline, lab, scene-3d, etc.
+  data/site.ts    todo lo editable
 public/
-  joseph.webp     retrato
-  hero-bg.webp    fondo del hero
-  firma.webp      firma cromada (fondos oscuros)
-  firma-tinta.webp firma invertida (papel)
+  joseph.webp     retrato a color
+  hero-bg.webp    fondo hero
+  firma*.webp     firmas
+  og.png          Open Graph 1200×630
 ```
+
+## Deploy
+
+`next.config.ts` usa `output: "export"`, `basePath: "/elsanchezok"`, `images.unoptimized`. GitHub Pages está en `legacy` (branch `gh-pages`) + workflow `.github/workflows/deploy.yml` con `upload-pages-artifact`/`deploy-pages`. Cambia a `Build and deployment → GitHub Actions` en Settings para unificar.
