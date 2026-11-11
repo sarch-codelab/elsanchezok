@@ -132,7 +132,7 @@ export function Scene3D({
       scene.add(group);
 
       const knotGeometry = new THREE.TorusKnotGeometry(1.32, 0.4, 200, 28, 2, 3);
-      const coreMaterial = new THREE.MeshBasicMaterial({ color: 0x0b0b0b });
+      const coreMaterial = new THREE.MeshBasicMaterial({ color: 0x160b28 });
       const wireMaterial = new THREE.MeshBasicMaterial({
         color: 0xf1efea,
         wireframe: true,

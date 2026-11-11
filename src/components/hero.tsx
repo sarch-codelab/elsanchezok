@@ -19,8 +19,8 @@ export function Hero() {
           fetchPriority="high"
           className="object-cover object-center"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,#0b0b0b_0%,rgba(11,11,11,0.9)_26%,rgba(11,11,11,0.48)_54%,rgba(11,11,11,0.16)_78%,rgba(11,11,11,0.4)_100%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,11,11,0.88)_0%,rgba(11,11,11,0.14)_32%,rgba(11,11,11,0.28)_64%,#0b0b0b_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,#160b28_0%,rgba(22,11,40,0.9)_26%,rgba(22,11,40,0.48)_54%,rgba(22,11,40,0.16)_78%,rgba(22,11,40,0.4)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(22,11,40,0.88)_0%,rgba(22,11,40,0.14)_32%,rgba(22,11,40,0.28)_64%,#160b28_100%)]" />
         <div className="grid-lines absolute inset-0 hidden opacity-25 md:block" />
       </div>
 
@@ -40,7 +40,7 @@ export function Hero() {
         </div>
 
         <div className="grid items-center gap-10 pb-10 pt-8 lg:grid-cols-12 lg:gap-10 lg:pb-14 lg:pt-12">
-          <div className="order-1 flex flex-col lg:col-span-7">
+          <div className="order-2 flex flex-col lg:col-span-7">
             <Reveal>
               <p className="meta text-muted">
                 Hola, soy {profile.firstName} — {profile.role}
@@ -59,7 +59,7 @@ export function Hero() {
                 </span>
               </Reveal>
               <Reveal as="span" delay={INTRO + 0.2} className="block">
-                <span className="serif-italic mt-2 block text-[clamp(1.9rem,6.2vw,5rem)] leading-[0.95]">
+                <span className="serif-italic mt-2 block text-[clamp(1.9rem,6.2vw,5rem)] leading-[0.95] text-accent">
                   {profile.headlineAccent}
                   <span className="blink" aria-hidden>
                     _
@@ -95,10 +95,16 @@ export function Hero() {
             </Reveal>
           </div>
 
-          <div className="order-2 lg:col-span-5">
+          <div className="relative order-1 flex justify-center lg:col-span-12">
+            <span
+              aria-hidden
+              className="display text-stroke-accent pointer-events-none absolute inset-0 z-0 flex items-center justify-center whitespace-nowrap text-[clamp(3.5rem,22vw,44rem)] leading-[0.8]"
+            >
+              Portafolio
+            </span>
             <Reveal delay={INTRO + 0.18} y={40}>
-              <figure className="relative mx-auto w-full max-w-[460px] lg:ml-auto">
-                <div className="relative overflow-hidden border border-ink/25 bg-white shadow-[0_40px_90px_-30px_rgba(0,0,0,0.85)]">
+              <figure className="relative mx-auto w-full max-w-[460px]">
+                <div className="relative z-10 overflow-hidden border border-white/20 shadow-[0_40px_90px_-30px_rgba(0,0,0,0.85)]">
                   <Image
                     src={`${basePath}/joseph.webp`}
                     alt={`Retrato de ${profile.firstName}`}
@@ -109,7 +115,7 @@ export function Hero() {
                     className="aspect-[4/5] w-full object-cover object-center grayscale contrast-[1.04] transition-transform duration-[1.2s] ease-out hover:scale-[1.03]"
                   />
 
-                  <span className="meta absolute left-0 top-0 bg-[#0b0b0b]/85 px-3 py-1.5 text-[#f1efea] backdrop-blur-sm">
+                  <span className="meta absolute left-0 top-0 bg-[#160b28]/85 px-3 py-1.5 text-[#f1efea] backdrop-blur-sm">
                     Retrato / 01
                   </span>
                   <span className="meta absolute bottom-0 right-0 bg-[#f1efea]/90 px-3 py-1.5 text-[#0b0b0b] backdrop-blur">
@@ -129,7 +135,7 @@ export function Hero() {
                 <div className="absolute -left-4 -top-4 hidden size-8 border-l border-t border-white/50 sm:block" />
                 <div className="absolute -bottom-4 -right-4 hidden size-8 border-b border-r border-white/50 sm:block" />
 
-                <div className="absolute bottom-12 -left-7 hidden size-28 place-items-center rounded-full border border-white/40 bg-[#0b0b0b]/85 backdrop-blur-sm md:grid">
+                <div className="absolute bottom-12 -left-7 hidden size-28 place-items-center rounded-full border border-white/40 bg-[#160b28]/85 backdrop-blur-sm md:grid">
                   <svg
                     viewBox="0 0 100 100"
                     className="spin-slow absolute inset-0 size-full p-1.5 text-[#f1efea]"
@@ -167,7 +173,7 @@ export function Hero() {
             {stats.map((stat) => (
               <div
                 key={stat.label}
-                className="bg-[#0b0b0b]/80 px-4 py-6 backdrop-blur-sm sm:px-5 md:py-8 md:first:pl-0 md:last:pr-0"
+                className="bg-[#160b28]/80 px-4 py-6 backdrop-blur-sm sm:px-5 md:py-8 md:first:pl-0 md:last:pr-0"
               >
                 <p className="display text-[clamp(2rem,4vw,3.4rem)] leading-none">
                   {stat.value}

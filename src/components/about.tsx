@@ -44,7 +44,7 @@ export function About() {
                   width={1400}
                   height={519}
                   sizes="220px"
-                  className="h-14 w-auto opacity-90"
+                  className="firma-adaptive h-14 w-auto opacity-90"
                 />
                 <span className="meta text-muted">
                   {profile.education} · {profile.orientation}
@@ -67,7 +67,23 @@ export function About() {
                 ))}
               </dl>
 
-              <div className="mt-8 border border-line p-5">
+              <div className="mt-8 border border-line">
+                <div className="relative aspect-[4/3] overflow-hidden">
+                  <Image
+                    src={`${basePath}/eva-01.webp`}
+                    alt="EVA-01, el mecha de Neon Genesis Evangelion"
+                    fill
+                    sizes="(max-width: 1024px) 90vw, 30vw"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="flex items-center justify-between gap-3 px-4 py-3">
+                  <p className="meta text-muted">Fuera del código</p>
+                  <p className="meta text-muted">EVA-01 · Evangelion</p>
+                </div>
+              </div>
+
+              <div className="mt-6 border border-line p-5">
                 <p className="meta text-muted">Actualmente</p>
                 <p className="mt-3 text-[0.95rem] leading-relaxed">
                   Cursando el último año del bachillerato técnico en Informática,

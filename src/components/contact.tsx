@@ -37,7 +37,7 @@ export function Contact() {
   return (
     <section
       id="contacto"
-      className="on-dark relative scroll-mt-20 overflow-hidden bg-ink py-20 text-paper md:py-28"
+      className="dark-section relative scroll-mt-20 overflow-hidden py-20 md:py-28"
     >
       <div className="relative mx-auto max-w-[1500px] px-5 sm:px-8">
         <div className="meta flex flex-wrap items-center justify-between gap-3 border-b border-paper/20 pb-4 text-paper/50">
@@ -68,7 +68,7 @@ export function Contact() {
             <button
               type="button"
               onClick={copyEmail}
-              className="btn shrink-0 border-paper/40 text-paper before:bg-paper hover:text-ink"
+              className="btn shrink-0 border-paper/40 text-paper before:bg-paper hover:text-[#0b0b0b]"
             >
               {copied ? "Copiado ✓" : "Copiar correo"}
             </button>
@@ -131,7 +131,7 @@ export function Contact() {
               <div className="flex flex-wrap items-center gap-4">
                 <button
                   type="submit"
-                  className="btn btn-filled !border-paper !bg-paper !text-ink before:!bg-ink hover:!text-paper"
+                  className="btn btn-filled !border-paper !bg-paper !text-[#0b0b0b] before:!bg-[#160b28] hover:!text-paper"
                 >
                   Enviar mensaje <span aria-hidden>↗</span>
                 </button>

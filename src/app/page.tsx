@@ -1,4 +1,5 @@
 import { About } from "@/components/about";
+import { CapCursor } from "@/components/cap-cursor";
 import { Contact } from "@/components/contact";
 import { Footer } from "@/components/footer";
 import { Hero } from "@/components/hero";
@@ -28,7 +29,7 @@ export default function Home() {
       <main>
         <Hero />
 
-        <div className="border-y border-white/10 bg-[#0b0b0b] py-4 text-[#f1efea] md:py-5">
+        <div className="border-y border-white/10 bg-[#160b28] py-4 text-[#f1efea] md:py-5">
           <Marquee items={keywords} />
         </div>
 
@@ -50,6 +51,7 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
+      <CapCursor />
     </>
   );
 }

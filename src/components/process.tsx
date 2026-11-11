@@ -19,7 +19,7 @@ export function Process() {
         <div className="mt-12 grid gap-px border-y border-line bg-line md:mt-16 md:grid-cols-2 lg:grid-cols-4">
           {process.map((step, i) => (
             <Reveal key={step.step} delay={i * 0.05}>
-              <div className="group relative flex h-full flex-col justify-between gap-10 bg-paper p-6 transition-colors duration-500 hover:bg-ink hover:text-paper md:p-7">
+              <div className="group relative flex h-full flex-col justify-between gap-10 bg-paper p-6 transition-colors duration-500 hover:bg-accent hover:text-paper md:p-7">
                 <div className="flex items-start justify-between">
                   <span className="meta text-muted transition-colors group-hover:text-paper/50">
                     Paso {step.step}

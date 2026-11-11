@@ -14,6 +14,8 @@
   --color-muted: var(--muted);
   --color-solid: var(--solid);
   --color-on-solid: var(--on-solid);
+  --color-accent: var(--accent);
+  --color-dark: var(--dark);
 }
 
 :root {
@@ -23,16 +25,19 @@
   --muted: rgba(11, 11, 11, 0.56);
   --solid: #0b0b0b;
   --on-solid: #f1efea;
+  --accent: #3f2a63;
+  --dark: #160b28;
   color-scheme: light;
 }
 
 html.inverted {
-  --paper: #0b0b0b;
+  --paper: #160b28;
   --ink: #f1efea;
   --line: rgba(241, 239, 234, 0.18);
   --muted: rgba(241, 239, 234, 0.56);
   --solid: #f1efea;
   --on-solid: #0b0b0b;
+  --accent: #b9a6e8;
   color-scheme: dark;
 }
 
@@ -55,7 +60,7 @@ body {
 }
 
 ::selection {
-  background: var(--ink);
+  background: var(--accent);
   color: var(--paper);
 }
 
@@ -95,6 +100,11 @@ body {
   color: transparent;
 }
 
+.text-stroke-accent {
+  -webkit-text-stroke: 0.045em var(--accent);
+  color: transparent;
+}
+
 @media (min-width: 768px) {
   .text-outline {
     -webkit-text-stroke-width: 1.6px;
@@ -105,20 +115,24 @@ body {
 .on-dark {
   --line: rgba(241, 239, 234, 0.2);
   --muted: rgba(241, 239, 234, 0.55);
+  --accent: #b9a6e8;
 }
 
 html.inverted .on-dark {
   --line: rgba(11, 11, 11, 0.16);
   --muted: rgba(11, 11, 11, 0.56);
+  --accent: #3f2a63;
 }
 
 /* Hero con imagen de fondo: siempre oscuro y con tinta clara */
 .dark-section {
+  --paper: #f1efea;
   --ink: #f1efea;
   --muted: rgba(241, 239, 234, 0.62);
   --line: rgba(241, 239, 234, 0.18);
+  --accent: #b9a6e8;
   color: #f1efea;
-  background-color: #0b0b0b;
+  background-color: var(--dark);
 }
 
 .dark-section .text-outline {
@@ -152,10 +166,16 @@ html.inverted .on-dark {
 /* Navegación transparente sobre el hero oscuro */
 .nav-light {
   --ink: #f1efea;
-  --paper: #0b0b0b;
+  --paper: var(--dark);
   --line: rgba(241, 239, 234, 0.24);
   --muted: rgba(241, 239, 234, 0.6);
+  --accent: #b9a6e8;
   color: #f1efea;
+}
+
+/* Firma de tinta: se invierte en modo oscuro para seguir visible */
+html.inverted .firma-adaptive {
+  filter: invert(1);
 }
 
 /* ---------- Grano de película ---------- */
@@ -225,6 +245,11 @@ html.inverted .grain::after {
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
+  .link-line:hover,
+  .link-line:focus-visible {
+    color: var(--accent);
+  }
+
   .link-line:hover::after,
   .link-line:focus-visible::after {
     transform: scaleX(1);
@@ -284,7 +309,7 @@ html.inverted .grain::after {
 
 /* ---------- Foco visible ---------- */
 :focus-visible {
-  outline: 2px solid var(--ink);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
 
@@ -296,7 +321,7 @@ html.inverted .grain::after {
   background: var(--paper);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--ink);
+  background: var(--accent);
   border: 3px solid var(--paper);
 }
 

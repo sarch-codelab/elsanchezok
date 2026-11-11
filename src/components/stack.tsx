@@ -11,7 +11,7 @@ export function Stack() {
   return (
     <section
       id="stack"
-      className="on-dark scroll-mt-20 bg-ink py-20 text-paper md:py-28"
+      className="dark-section scroll-mt-20 py-20 md:py-28"
     >
       <div className="mx-auto max-w-[1500px] px-5 sm:px-8">
         <SectionHeading
@@ -55,7 +55,7 @@ export function Stack() {
                         aria-hidden
                         className={`grid size-9 shrink-0 place-items-center rounded-full border transition-colors duration-300 ${
                           isOpen
-                            ? "border-paper bg-paper text-ink"
+                            ? "border-paper bg-paper text-[#0b0b0b]"
                             : "border-paper/30 group-hover:border-paper"
                         }`}
                       >
@@ -83,7 +83,7 @@ export function Stack() {
                           {group.items.map((item) => (
                             <li
                               key={item}
-                              className="cursor-default border border-paper/25 px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.1em] transition-colors duration-300 hover:border-paper hover:bg-paper hover:text-ink"
+                              className="cursor-default border border-paper/25 px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.1em] transition-colors duration-300 hover:border-paper hover:bg-paper hover:text-[#0b0b0b]"
                             >
                               {item}
                             </li>

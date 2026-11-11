@@ -37,7 +37,7 @@ export function Projects() {
               Proyectos <span className="serif-italic lowercase">selectos</span>
             </>
           }
-          description="Seis proyectos donde aprendí algo que no estaba en ningún tutorial. Toca cualquiera para ver los detalles."
+          description="Proyectos reales: prácticas profesionales y ferias de ciencias. Toca cualquiera para ver los detalles."
         />
 
         <div className="meta mt-10 flex items-center justify-between border-b border-line pb-3 text-muted">
@@ -83,7 +83,7 @@ export function Projects() {
                         aria-hidden
                         className={`grid size-9 shrink-0 place-items-center rounded-full border text-sm transition-colors duration-300 ${
                           isOpen
-                            ? "border-ink bg-ink text-paper"
+                            ? "border-accent bg-accent text-paper"
                             : "border-line group-hover:border-ink"
                         }`}
                       >
@@ -149,6 +149,16 @@ export function Projects() {
                           <p className="meta mt-5 text-muted">
                             Proyecto {project.year}
                           </p>
+                          {project.url && (
+                            <a
+                              href={project.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="link-line meta mt-2 inline-flex text-ink"
+                            >
+                              Ver proyecto en vivo <span aria-hidden>↗</span>
+                            </a>
+                          )}
                         </div>
                       </div>
                     </motion.div>

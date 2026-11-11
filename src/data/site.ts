@@ -13,7 +13,7 @@ export const profile = {
   headlineMiddle: "PROGRAMADOR",
   headlineAccent: "en formación",
   tagline:
-    "Tercero de bachillerato en Informática con orientación en Programación. Diseño y construyo interfaces que se sienten simples, rápidas y bien acabadas.",
+    "Tercero de bachillerato en Informática con orientación en Programación. Diseño y construyo interfaces que se sienten simples, rápidas y bien acabadas — y cada vez más, sistemas que aprenden.",
   location: "Disponible en remoto",
   email: "hola@joseph.dev",
   availability: "Abierto a proyectos y prácticas",
@@ -33,7 +33,7 @@ export const profile = {
 
 export const stats = [
   { value: "3+", label: "Años escribiendo código" },
-  { value: "06", label: "Proyectos construidos" },
+  { value: "03", label: "Proyectos construidos" },
   { value: "3ro", label: "Bachillerato en Informática" },
   { value: "100%", label: "Ganas de seguir aprendiendo" },
 ];
@@ -44,12 +44,14 @@ export const about = {
     "Empecé con una página estática en HTML y hoy trabajo con componentes, estado, rutas, APIs y bases de datos. Ese salto no vino de un curso, vino de romper cosas, leer errores y volver a intentarlo.",
     "Estudio tercero de bachillerato en Informática con orientación en Programación. Ahí aprendí la base: lógica, estructuras de datos, redes y bases de datos. Fuera del aula aprendo lo que el mercado pide hoy: React, Next.js, TypeScript y desarrollo web moderno.",
     "Me interesa el detalle: la jerarquía de una tipografía, la duración de una transición, el nombre de una variable. Un buen producto se nota en lo que no se ve.",
+    "También la inteligencia artificial: en Portal Pilot integré asistentes con Groq API y cada proyecto me da una excusa para experimentar con LLMs, agentes y automatización.",
   ],
   facts: [
     { label: "Formación", value: "3ro de bachillerato técnico en Informática, mención Programación" },
-    { label: "Enfoque", value: "Frontend con React y Next.js · Backend con Node.js" },
+    { label: "Enfoque", value: "Frontend con React y Next.js · Backend con Node.js · IA aplicada" },
     { label: "Herramientas", value: "TypeScript, Tailwind CSS, Git, SQL" },
     { label: "Idiomas", value: "Español nativo · Inglés técnico" },
+    { label: "Gustos", value: "Evangelion · Música · Café" },
   ],
 };
 
@@ -67,6 +69,13 @@ export const stackGroups = [
     description:
       "APIs REST, autenticación y lógica de servidor. Código ordenado, validado y fácil de leer.",
     items: ["Node.js", "Express", "Python", "Java", "APIs REST", "JWT"],
+  },
+  {
+    id: "ia",
+    title: "Inteligencia Artificial",
+    description:
+      "Integración de modelos de lenguaje y automatización inteligente en productos reales, no solo demos.",
+    items: ["Groq API", "LLMs", "Prompt Engineering", "Agentes", "APIs de IA"],
   },
   {
     id: "datos",
@@ -93,98 +102,57 @@ export type Project = {
   highlights: string[];
   stack: string[];
   pattern: "grid" | "type" | "dots" | "lines" | "diagonal" | "orbit";
+  url?: string;
 };
 
 export const projects: Project[] = [
   {
     index: "01",
-    title: "Nexo",
-    category: "Sistema de gestión escolar",
+    title: "Arconet",
+    category: "Práctica profesional · Sitio corporativo + tienda",
     year: "2026",
     summary:
-      "Plataforma para que un centro educativo administre estudiantes, calificaciones y asistencia desde un solo panel, con roles de profesor y administrador.",
+      "Proyecto de práctica escolar en Arconet, S.A., distribuidora hondureña de equipos de telecomunicaciones: sitio web corporativo y tienda en línea hechos desde cero, con catálogo de fibra óptica, CATV y satélite, portal de clientes y panel administrativo.",
     highlights: [
-      "Autenticación con sesiones y permisos por rol.",
-      "Reportes de calificaciones exportables y vista de asistencia por curso.",
-      "Interfaz responsive pensada para usarse desde el teléfono.",
+      "Catálogo de productos organizado por líneas de solución con carrito de compras.",
+      "Portal de clientes y panel administrativo con accesos diferenciados.",
+      "Secciones de empresa, soluciones por sector y formulario de contacto directo.",
     ],
-    stack: ["Next.js", "TypeScript", "PostgreSQL", "Tailwind"],
-    pattern: "grid",
+    stack: ["Next.js", "TypeScript", "Tailwind", "Supabase"],
+    pattern: "diagonal",
+    url: "https://arconethn.com",
   },
   {
     index: "02",
-    title: "Pulso",
-    category: "Panel de finanzas personales",
-    year: "2025",
+    title: "Portal Pilot",
+    category: "SaaS · ERP + POS + IA",
+    year: "2026",
     summary:
-      "Aplicación para registrar ingresos y gastos, visualizar categorías y entender en qué se va el dinero cada mes.",
+      "Plataforma web multi-empresa para negocios en Honduras: centraliza facturación electrónica SAR, inventario, contabilidad, RRHH, CRM y punto de venta en un solo portal, con asistentes de IA en la nube.",
     highlights: [
-      "Gráficos interactivos de flujo mensual y categorías.",
-      "Filtros por rango de fechas con estado sincronizado en la URL.",
-      "Persistencia local y exportación a CSV.",
+      "Más de 20 módulos de negocio adaptados a pulperías, retail, clubes de membresía y más.",
+      "IA en la nube con Groq API para análisis inteligente y automatización por módulo.",
+      "Control de acceso empresarial con roles granulares y verificación en dos pasos (2FA).",
+      "Arquitectura multi-empresa con registro de actividad auditado por tenant.",
     ],
-    stack: ["React", "Chart.js", "Vite", "CSS Modules"],
-    pattern: "lines",
+    stack: ["React", "Node.js", "Express", "Supabase", "Groq API", "Vercel"],
+    pattern: "orbit",
+    url: "https://portal-pilot.vercel.app",
   },
   {
     index: "03",
-    title: "Atlas",
-    category: "API REST de biblioteca",
+    title: "Stars System",
+    category: "Control de asistencia escolar",
     year: "2025",
     summary:
-      "Backend para gestionar libros, socios y préstamos, con validaciones, documentación y pruebas de los endpoints principales.",
+      "Sistema escolar para el control de entradas y salidas de estudiantes: lectura de códigos de barras y notificaciones automáticas por Telegram cada vez que se registra un movimiento.",
     highlights: [
-      "CRUD completo con validación de datos en el servidor.",
-      "Modelo relacional con préstamos, devoluciones y stock.",
-      "Documentación de endpoints lista para consumir.",
+      "Registro de ingresos y salidas mediante escaneo de códigos de barras.",
+      "Notificaciones en tiempo real al grupo de Telegram del colegio.",
+      "Historial de asistencia por estudiante y por fecha.",
     ],
-    stack: ["Node.js", "Express", "MySQL", "JWT"],
-    pattern: "dots",
-  },
-  {
-    index: "04",
-    title: "Marea",
-    category: "Tienda online de streetwear",
-    year: "2025",
-    summary:
-      "Catálogo de ropa con carrito persistente, filtros por talla y un checkout simple, todo con una identidad visual fuerte.",
-    highlights: [
-      "Carrito con persistencia y cálculo de totales.",
-      "Filtros por categoría y talla sin recargar la página.",
-      "Animaciones de transición entre vistas.",
-    ],
-    stack: ["Next.js", "TypeScript", "Tailwind", "Stripe"],
-    pattern: "diagonal",
-  },
-  {
-    index: "05",
-    title: "Byte",
-    category: "Bot para la comunidad del colegio",
-    year: "2024",
-    summary:
-      "Bot de Discord que organiza recordatorios de tareas, avisos de exámenes y comandos de utilidad para compañeros de clase.",
-    highlights: [
-      "Sistema de recordatorios programados por fecha.",
-      "Comandos slash con respuestas embebidas.",
-      "Desplegado y usado por más de 80 estudiantes.",
-    ],
-    stack: ["Python", "discord.py", "SQLite"],
-    pattern: "orbit",
-  },
-  {
-    index: "06",
-    title: "Sombra",
-    category: "Estudio de interfaz musical",
-    year: "2024",
-    summary:
-      "Ejercicio de diseño y código: reconstruir un reproductor de música cuidando tipografía, espaciado y microinteracciones.",
-    highlights: [
-      "Reproductor funcional con barra de progreso y cola.",
-      "Animaciones fluidas con respeto a prefers-reduced-motion.",
-      "Sistema de diseño en variables CSS.",
-    ],
-    stack: ["React", "Framer Motion", "CSS"],
-    pattern: "type",
+    stack: ["Python", "pyzbar", "Telegram Bot API", "SQLite"],
+    pattern: "grid",
   },
 ];
 
@@ -215,9 +183,9 @@ export const timeline = [
   },
   {
     year: "Próximo",
-    title: "Ingeniería de Software",
+    title: "Software · Inteligencia Artificial",
     description:
-      "Mi meta es estudiar Ingeniería de Software, seguir construyendo productos reales y trabajar en un equipo donde se aprenda todos los días.",
+      "Mi meta es estudiar Ingeniería de Software, con la Ingeniería en Inteligencia Artificial como segunda opción que me entusiasma igual. Quiero seguir construyendo productos reales y trabajar en un equipo donde se aprenda todos los días.",
   },
 ];
 

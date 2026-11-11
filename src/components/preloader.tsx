@@ -71,7 +71,7 @@ export function Preloader() {
     <AnimatePresence>
       {!done && (
         <motion.div
-          className="fixed inset-0 z-[100] flex flex-col justify-between bg-ink p-5 text-paper sm:p-8"
+          className="dark-section fixed inset-0 z-[100] flex flex-col justify-between p-5 text-paper sm:p-8"
           exit={{ y: "-100%" }}
           transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
         >
