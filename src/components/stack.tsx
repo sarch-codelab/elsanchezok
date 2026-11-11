@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 import { stackGroups } from "@/data/site";
+import { IconMinus, IconPlus } from "./icons";
 import { SectionHeading } from "./section-heading";
 
 export function Stack() {
@@ -59,7 +60,11 @@ export function Stack() {
                             : "border-paper/40 group-hover:border-paper"
                         }`}
                       >
-                        {isOpen ? "−" : "+"}
+                        {isOpen ? (
+                          <IconMinus className="size-3.5" />
+                        ) : (
+                          <IconPlus className="size-3.5" />
+                        )}
                       </span>
                     </span>
                   </button>

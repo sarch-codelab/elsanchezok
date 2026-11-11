@@ -1,3 +1,5 @@
+import { IconSparkle } from "./icons";
+
 export function Marquee({
   items,
   reverse = false,
@@ -18,8 +20,8 @@ export function Marquee({
           <span className="display px-6 text-[clamp(1.5rem,3.6vw,3rem)] leading-none">
             {item}
           </span>
-          <span className="text-[0.7em]" aria-hidden>
-            ✳
+          <span className="inline-flex items-center" aria-hidden>
+            <IconSparkle className="size-[0.7em]" />
           </span>
         </span>
       ))}

@@ -1,4 +1,5 @@
 import { process } from "@/data/site";
+import { IconSparkle } from "./icons";
 import { Reveal } from "./reveal";
 import { SectionHeading } from "./section-heading";
 
@@ -28,7 +29,7 @@ export function Process() {
                     aria-hidden
                     className="text-lg transition-transform duration-500 group-hover:rotate-90"
                   >
-                    ✳
+                    <IconSparkle className="size-4" />
                   </span>
                 </div>
                 <div>

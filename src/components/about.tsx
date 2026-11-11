@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { about, basePath, profile } from "@/data/site";
+import { IconArrowUpRight } from "./icons";
 import { Reveal } from "./reveal";
 import { SectionHeading } from "./section-heading";
 
@@ -92,9 +93,9 @@ export function About() {
                 </p>
                 <a
                   href="#contacto"
-                  className="meta link-line mt-4 inline-flex text-ink"
+                  className="meta link-line mt-4 inline-flex items-center gap-1.5 text-ink"
                 >
-                  Trabajemos juntos <span aria-hidden>↗</span>
+                  Trabajemos juntos <IconArrowUpRight className="size-3" />
                 </a>
               </div>
             </Reveal>

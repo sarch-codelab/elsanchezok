@@ -4,6 +4,7 @@ import { useLenis } from "lenis/react";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
 import { navLinks, profile } from "@/data/site";
+import { IconArrowUpRight, IconClose } from "./icons";
 import { ThemeToggle } from "./theme-toggle";
 
 export function Nav() {
@@ -102,9 +103,9 @@ export function Nav() {
 
           <div className="flex items-center gap-3">
             <ThemeToggle />
-            <a href="#contacto" className="btn btn-filled hidden !py-2.5 sm:inline-flex">
+            <a href="#contacto" className="btn btn-filled hidden items-center gap-1.5 !py-2.5 sm:inline-flex">
               Hablemos
-              <span aria-hidden>↗</span>
+              <IconArrowUpRight className="size-3.5" />
             </a>
             <button
               type="button"
@@ -145,7 +146,7 @@ export function Nav() {
                   onClick={() => setOpen(false)}
                   className="meta flex items-center gap-2 border border-line px-3 py-2"
                 >
-                  Cerrar <span aria-hidden>✕</span>
+                  Cerrar <IconClose className="size-3.5" />
                 </button>
               </div>
             </div>

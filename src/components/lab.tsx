@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { profile } from "@/data/site";
+import { IconArrowUpRight } from "./icons";
 import { Reveal } from "./reveal";
 import { Scene3D, type SceneStatus } from "./scene-3d";
 import { SectionHeading } from "./section-heading";
@@ -107,9 +108,9 @@ export function Lab() {
                   href={profile.socials[0].href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="meta link-line"
+                  className="meta link-line inline-flex items-center gap-1"
                 >
-                  Más experimentos <span aria-hidden>↗</span>
+                  Más experimentos <IconArrowUpRight className="size-3" />
                 </a>
                 <span className="meta text-muted">01 / 01</span>
               </div>

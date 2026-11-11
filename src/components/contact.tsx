@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { basePath, profile } from "@/data/site";
+import { IconArrowUpRight, IconCheck } from "./icons";
 import { Reveal } from "./reveal";
 
 export function Contact() {
@@ -68,9 +69,15 @@ export function Contact() {
             <button
               type="button"
               onClick={copyEmail}
-              className="btn shrink-0 border-paper/40 text-paper before:bg-paper hover:text-[#0b0b0b]"
+              className="btn inline-flex shrink-0 items-center gap-1.5 border-paper/40 text-paper before:bg-paper hover:text-[#0b0b0b]"
             >
-              {copied ? "Copiado ✓" : "Copiar correo"}
+              {copied ? (
+                <>
+                  Copiado <IconCheck className="size-3.5" />
+                </>
+              ) : (
+                "Copiar correo"
+              )}
             </button>
           </div>
         </Reveal>
@@ -131,9 +138,9 @@ export function Contact() {
               <div className="flex flex-wrap items-center gap-4">
                 <button
                   type="submit"
-                  className="btn btn-filled !border-paper !bg-paper !text-[#0b0b0b] before:!bg-[#160b28] hover:!text-paper"
+                  className="btn btn-filled inline-flex items-center gap-1.5 !border-paper !bg-paper !text-[#0b0b0b] before:!bg-[#160b28] hover:!text-paper"
                 >
-                  Enviar mensaje <span aria-hidden>↗</span>
+                  Enviar mensaje <IconArrowUpRight className="size-3.5" />
                 </button>
                 <p className="meta text-paper/60" aria-live="polite">
                   {sent
@@ -163,7 +170,7 @@ export function Contact() {
                       aria-hidden
                       className="transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1"
                     >
-                      ↗
+                      <IconArrowUpRight className="size-3.5" />
                     </span>
                   </a>
                 </li>

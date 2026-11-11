@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { basePath, profile, stats } from "@/data/site";
+import { IconArrowDownRight, IconArrowUpRight, IconSparkle } from "./icons";
 import { Reveal } from "./reveal";
 
 /** La intro arranca justo después del preloader. */
@@ -77,10 +78,10 @@ export function Hero() {
             <Reveal delay={INTRO + 0.34}>
               <div className="mt-8 flex flex-wrap items-center gap-3">
                 <a href="#proyectos" className="btn btn-filled">
-                  Ver proyectos <span aria-hidden>↘</span>
+                  Ver proyectos <IconArrowDownRight className="size-3.5" />
                 </a>
                 <a href="#contacto" className="btn">
-                  Hablemos <span aria-hidden>↗</span>
+                  Hablemos <IconArrowUpRight className="size-3.5" />
                 </a>
               </div>
             </Reveal>
@@ -155,7 +156,7 @@ export function Hero() {
                     </text>
                   </svg>
                   <span className="text-xl" aria-hidden>
-                    ✳
+                    <IconSparkle className="size-4" />
                   </span>
                 </div>
 
