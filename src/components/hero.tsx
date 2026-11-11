@@ -112,7 +112,7 @@ export function Hero() {
                     height={1100}
                     loading="eager"
                     sizes="(max-width: 1024px) 90vw, 38vw"
-                    className="aspect-[4/5] w-full object-cover object-center grayscale contrast-[1.04] transition-transform duration-[1.2s] ease-out hover:scale-[1.03]"
+                    className="aspect-[4/5] w-full object-cover object-center transition-transform duration-[1.2s] ease-out hover:scale-[1.03]"
                   />
 
                   <span className="meta absolute left-0 top-0 bg-[#160b28]/85 px-3 py-1.5 text-[#f1efea] backdrop-blur-sm">
