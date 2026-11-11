@@ -21,7 +21,7 @@ export function Stack() {
               Stack <span className="serif-italic lowercase">técnico</span>
             </>
           }
-          description="Las herramientas con las que trabajo hoy. Sin rellenar la lista: todo lo que aparece aquí lo he usado en un proyecto."
+          description="Las herramientas con las que trabajo hoy. Las que marco dominan mis proyectos recientes; las demás, en aprendizaje activo."
         />
 
         <div className="mt-12 border-t border-paper/20 md:mt-16">
@@ -38,7 +38,7 @@ export function Stack() {
                     className="group flex w-full items-center justify-between gap-4 py-6 text-left md:py-7"
                   >
                     <span className="flex items-start gap-4 sm:gap-6">
-                      <span className="meta mt-2 text-paper/40">0{i + 1}</span>
+                      <span className="meta mt-2 text-paper/60">0{i + 1}</span>
                       <span
                         className={`display text-[clamp(2rem,5.5vw,4rem)] leading-none transition-transform duration-500 group-hover:translate-x-2 ${
                           isOpen ? "" : "text-paper/70 group-hover:text-paper"
@@ -48,7 +48,7 @@ export function Stack() {
                       </span>
                     </span>
                     <span className="flex items-center gap-4 sm:gap-8">
-                      <span className="meta hidden text-paper/40 sm:block">
+                      <span className="meta hidden text-paper/60 sm:block">
                         {group.items.length} herramientas
                       </span>
                       <span
@@ -56,7 +56,7 @@ export function Stack() {
                         className={`grid size-9 shrink-0 place-items-center rounded-full border transition-colors duration-300 ${
                           isOpen
                             ? "border-paper bg-paper text-[#0b0b0b]"
-                            : "border-paper/30 group-hover:border-paper"
+                            : "border-paper/40 group-hover:border-paper"
                         }`}
                       >
                         {isOpen ? "−" : "+"}
@@ -98,7 +98,7 @@ export function Stack() {
           })}
         </div>
 
-        <p className="meta mt-8 text-paper/40">
+        <p className="meta mt-8 text-paper/60">
           Siempre aprendiendo algo nuevo · Actualmente: testing y arquitectura de
           software
         </p>

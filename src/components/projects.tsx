@@ -59,7 +59,9 @@ export function Projects() {
                     type="button"
                     onClick={() => setOpen(isOpen ? null : project.index)}
                     onMouseEnter={() => setHovered(project.index)}
+                    onMouseLeave={() => setHovered(null)}
                     onFocus={() => setHovered(project.index)}
+                    onBlur={() => setHovered(null)}
                     aria-expanded={isOpen}
                     aria-controls={`proyecto-${project.index}`}
                     className="group grid w-full grid-cols-[auto_1fr_auto] items-center gap-3 py-6 text-left sm:gap-5 md:py-7"

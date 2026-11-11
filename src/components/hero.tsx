@@ -2,8 +2,8 @@ import Image from "next/image";
 import { basePath, profile, stats } from "@/data/site";
 import { Reveal } from "./reveal";
 
-/** La intro arranca cuando el preloader empieza a retirarse. */
-const INTRO = 1.4;
+/** La intro arranca justo después del preloader. */
+const INTRO = 0.25;
 
 export function Hero() {
   return (
@@ -14,7 +14,7 @@ export function Hero() {
           src={`${basePath}/hero-bg.webp`}
           alt=""
           fill
-          priority
+          preload
           unoptimized
           fetchPriority="high"
           className="object-cover object-center"

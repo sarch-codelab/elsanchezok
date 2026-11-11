@@ -135,7 +135,7 @@ export function Contact() {
                 >
                   Enviar mensaje <span aria-hidden>↗</span>
                 </button>
-                <p className="meta text-paper/40" aria-live="polite">
+                <p className="meta text-paper/60" aria-live="polite">
                   {sent
                     ? "Abriendo tu app de correo…"
                     : "Se abrirá tu app de correo"}
@@ -157,7 +157,7 @@ export function Contact() {
                   >
                     <span className="flex items-baseline gap-3">
                       <span className="text-base">{social.label}</span>
-                      <span className="meta text-paper/40">{social.handle}</span>
+                      <span className="meta text-paper/60">{social.handle}</span>
                     </span>
                     <span
                       aria-hidden
@@ -188,7 +188,7 @@ export function Contact() {
         </div>
 
         <div className="mt-16 flex flex-col gap-6 border-t border-paper/20 pt-8 sm:flex-row sm:items-end sm:justify-between">
-          <p className="meta max-w-xs leading-relaxed text-paper/40">
+          <p className="meta max-w-xs leading-relaxed text-paper/60">
             Del otro lado de la pantalla hay una persona.
             <br />
             Gracias por llegar hasta aquí.

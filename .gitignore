@@ -1,3 +1,7 @@
 node_modules
 .next
 out
+.tmp
+tsconfig.tsbuildinfo
+.env
+.env.local

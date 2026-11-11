@@ -14,9 +14,7 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
         wheelMultiplier: 1,
         touchMultiplier: 1.5,
         autoRaf: true,
-        // Igual que las animaciones: el scroll suave se mantiene aunque el
-        // sistema tenga activada la opción de reducir movimiento.
-        respectReducedMotion: false,
+        respectReducedMotion: true,
         // Los enlaces internos se desplazan con la misma inercia. El margen
         // de las secciones (scroll-mt-20) ya compensa el nav fijo.
         anchors: true,

@@ -4,7 +4,7 @@ import { useLenis } from "lenis/react";
 import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { basePath } from "@/data/site";
+import { basePath, profile } from "@/data/site";
 
 export function Preloader() {
   const [progress, setProgress] = useState(0);
@@ -57,13 +57,22 @@ export function Preloader() {
   }, []);
 
   useEffect(() => {
+    // Marca activa para que otros efectos (nav) no pisen el bloqueo de scroll.
+    if (!done) document.body.dataset.preloader = "active";
+    else delete document.body.dataset.preloader;
     document.body.style.overflow = done ? "" : "hidden";
     if (lenis) {
       if (done) lenis.start();
       else lenis.stop();
     }
     return () => {
-      document.body.style.overflow = "";
+      // Solo liberar si realmente somos nosotros quienes bloqueamos.
+      if (document.body.dataset.preloader === "active") {
+        delete document.body.dataset.preloader;
+        document.body.style.overflow = "";
+      } else if (done) {
+        document.body.style.overflow = "";
+      }
     };
   }, [done, lenis]);
 
@@ -71,13 +80,14 @@ export function Preloader() {
     <AnimatePresence>
       {!done && (
         <motion.div
+          data-preloader-active
           className="dark-section fixed inset-0 z-[100] flex flex-col justify-between p-5 text-paper sm:p-8"
           exit={{ y: "-100%" }}
           transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
         >
           <div className="meta flex items-center justify-between opacity-70">
             <span>Joseph — Portafolio</span>
-            <span>{new Date().getFullYear()}</span>
+            <span>{profile.year}</span>
           </div>
 
           {/* La firma es lo primero que se ve: aparece desde el negro mientras
@@ -93,7 +103,7 @@ export function Preloader() {
               alt="Firma de Joseph"
               width={1400}
               height={519}
-              priority
+              preload
               sizes="(max-width: 640px) 58vw, 30rem"
               className="pointer-events-none h-auto w-[clamp(14rem,52vw,30rem)] select-none"
             />
@@ -107,7 +117,7 @@ export function Preloader() {
               </p>
             </div>
             <p className="serif-italic hidden pb-4 text-2xl opacity-70 sm:block">
-              blanco y negro
+              cargando
             </p>
           </div>
 

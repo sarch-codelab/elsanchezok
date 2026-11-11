@@ -18,8 +18,11 @@ export function Timeline() {
 
         <ol className="mt-12 md:mt-16">
           {timeline.map((item, i) => (
-            <Reveal key={item.year} delay={i * 0.04}>
-              <li className="group grid grid-cols-1 gap-3 border-t border-line py-7 md:grid-cols-12 md:gap-6 md:py-9">
+            <li
+              key={item.year}
+              className="group grid grid-cols-1 gap-3 border-t border-line py-7 md:grid-cols-12 md:gap-6 md:py-9"
+            >
+              <Reveal delay={i * 0.04} className="contents">
                 <div className="flex items-center gap-3 md:col-span-3">
                   <span
                     aria-hidden
@@ -41,8 +44,8 @@ export function Timeline() {
                     {item.description}
                   </p>
                 </div>
-              </li>
-            </Reveal>
+              </Reveal>
+            </li>
           ))}
         </ol>
       </div>

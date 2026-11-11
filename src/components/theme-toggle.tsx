@@ -36,7 +36,7 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
       onClick={toggle}
       aria-pressed={inverted}
       aria-label={inverted ? "Cambiar a fondo claro" : "Cambiar a fondo oscuro"}
-      title="Invertir blanco y negro"
+      title={inverted ? "Cambiar a fondo claro" : "Cambiar a fondo oscuro"}
       className={`group flex items-center gap-2 border border-line px-3 py-2 font-mono text-[10px] uppercase tracking-[0.18em] transition-colors hover:border-ink ${className}`}
     >
       <span

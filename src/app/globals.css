@@ -22,7 +22,7 @@
   --paper: #f1efea;
   --ink: #0b0b0b;
   --line: rgba(11, 11, 11, 0.16);
-  --muted: rgba(11, 11, 11, 0.56);
+  --muted: rgba(11, 11, 11, 0.64);
   --solid: #0b0b0b;
   --on-solid: #f1efea;
   --accent: #3f2a63;
@@ -34,15 +34,17 @@ html.inverted {
   --paper: #160b28;
   --ink: #f1efea;
   --line: rgba(241, 239, 234, 0.18);
-  --muted: rgba(241, 239, 234, 0.56);
+  --muted: rgba(241, 239, 234, 0.62);
   --solid: #f1efea;
   --on-solid: #0b0b0b;
   --accent: #b9a6e8;
   color-scheme: dark;
 }
 
-* {
-  border-color: var(--line);
+@layer base {
+  * {
+    border-color: var(--line);
+  }
 }
 
 html {
@@ -114,13 +116,13 @@ body {
 /* Secciones con fondo invertido: los tokens de línea y texto se aclaran */
 .on-dark {
   --line: rgba(241, 239, 234, 0.2);
-  --muted: rgba(241, 239, 234, 0.55);
+  --muted: rgba(241, 239, 234, 0.62);
   --accent: #b9a6e8;
 }
 
 html.inverted .on-dark {
   --line: rgba(11, 11, 11, 0.16);
-  --muted: rgba(11, 11, 11, 0.56);
+  --muted: rgba(11, 11, 11, 0.64);
   --accent: #3f2a63;
 }
 
@@ -128,7 +130,7 @@ html.inverted .on-dark {
 .dark-section {
   --paper: #f1efea;
   --ink: #f1efea;
-  --muted: rgba(241, 239, 234, 0.62);
+  --muted: rgba(241, 239, 234, 0.64);
   --line: rgba(241, 239, 234, 0.18);
   --accent: #b9a6e8;
   color: #f1efea;
@@ -325,11 +327,21 @@ html.inverted .grain::after {
   border: 3px solid var(--paper);
 }
 
-/*
- * Nota: las animaciones se ejecutan siempre, incluso si el sistema tiene
- * activada la opción de reducir movimiento. Es una decisión explícita del
- * proyecto para que el portafolio conserve su comportamiento visual.
- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .marquee-track {
+    animation: none !important;
+    transform: none !important;
+  }
+}
 
 @keyframes spin-slow {
   to {
