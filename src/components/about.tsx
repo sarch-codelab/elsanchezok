@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { about, profile } from "@/data/site";
+import { about, basePath, profile } from "@/data/site";
 import { Reveal } from "./reveal";
 import { SectionHeading } from "./section-heading";
 
@@ -39,7 +39,7 @@ export function About() {
             <Reveal delay={0.1}>
               <div className="mt-10 flex flex-wrap items-center gap-x-5 gap-y-3 border-t border-line pt-6">
                 <Image
-                  src="/firma-tinta.webp"
+                  src={`${basePath}/firma-tinta.webp`}
                   alt={`Firma de ${profile.firstName} Sánchez`}
                   width={1400}
                   height={519}

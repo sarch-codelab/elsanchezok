@@ -3,6 +3,8 @@
  * Cambia estos datos y la página se actualiza sola.
  */
 
+export const basePath = "/elsanchezok";
+
 export const profile = {
   firstName: "Joseph",
   lastName: "",

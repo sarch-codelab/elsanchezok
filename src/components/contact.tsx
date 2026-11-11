@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { profile } from "@/data/site";
+import { basePath, profile } from "@/data/site";
 import { Reveal } from "./reveal";
 
 export function Contact() {
@@ -194,7 +194,7 @@ export function Contact() {
             Gracias por llegar hasta aquí.
           </p>
           <Image
-            src="/firma.webp"
+            src={`${basePath}/firma.webp`}
             alt={`Firma de ${profile.firstName} Sánchez`}
             width={1400}
             height={519}

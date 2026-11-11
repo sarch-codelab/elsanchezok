@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { profile, stats } from "@/data/site";
+import { basePath, profile, stats } from "@/data/site";
 import { Reveal } from "./reveal";
 
 /** La intro arranca cuando el preloader empieza a retirarse. */
@@ -11,7 +11,7 @@ export function Hero() {
       {/* Fondo: imagen + veladuras para que el texto siga legible */}
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <Image
-          src="/hero-bg.webp"
+          src={`${basePath}/hero-bg.webp`}
           alt=""
           fill
           priority
@@ -100,7 +100,7 @@ export function Hero() {
               <figure className="relative mx-auto w-full max-w-[460px] lg:ml-auto">
                 <div className="relative overflow-hidden border border-ink/25 bg-white shadow-[0_40px_90px_-30px_rgba(0,0,0,0.85)]">
                   <Image
-                    src="/joseph.webp"
+                    src={`${basePath}/joseph.webp`}
                     alt={`Retrato de ${profile.firstName}`}
                     width={1100}
                     height={1100}

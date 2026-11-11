@@ -4,6 +4,7 @@ import { useLenis } from "lenis/react";
 import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { basePath } from "@/data/site";
 
 export function Preloader() {
   const [progress, setProgress] = useState(0);
@@ -22,7 +23,7 @@ export function Preloader() {
     const imageReady = new Promise<void>((resolve) => {
       image.onload = () => resolve();
       image.onerror = () => resolve();
-      image.src = "/hero-bg.webp";
+      image.src = `${basePath}/hero-bg.webp`;
       if (image.complete) resolve();
     });
 
@@ -88,7 +89,7 @@ export function Preloader() {
             transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
           >
             <Image
-              src="/firma.webp"
+              src={`${basePath}/firma.webp`}
               alt="Firma de Joseph"
               width={1400}
               height={519}
