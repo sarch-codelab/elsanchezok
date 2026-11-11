@@ -96,10 +96,10 @@ export function Hero() {
             </Reveal>
           </div>
 
-          <div className="relative order-1 flex justify-center lg:col-span-12">
+          <div className="relative order-1 flex justify-center overflow-hidden lg:col-span-12">
             <span
               aria-hidden
-              className="display text-stroke-accent pointer-events-none absolute inset-0 z-0 flex items-center justify-center overflow-hidden whitespace-nowrap text-[clamp(4.5rem,18vw,30rem)] leading-[0.85] tracking-[-0.02em] opacity-[0.92]"
+              className="display text-stroke-accent pointer-events-none absolute inset-0 z-0 flex items-center justify-center overflow-hidden whitespace-nowrap text-[clamp(7rem,26vw,46rem)] leading-[0.78] tracking-[-0.04em] opacity-[0.96] [transform:scaleX(0.68)]"
             >
               Portafolio
             </span>
