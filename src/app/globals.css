@@ -215,7 +215,7 @@ html.inverted .grain::after {
 }
 
 .marquee-track.fast {
-  animation-duration: 18s;
+  animation-duration: 32s;
 }
 
 .marquee-reverse {

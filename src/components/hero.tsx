@@ -99,7 +99,13 @@ export function Hero() {
           <div className="relative order-1 flex justify-center overflow-hidden lg:col-span-12">
             <span
               aria-hidden
-              className="display text-stroke-accent pointer-events-none absolute inset-0 z-0 flex items-center justify-center overflow-hidden whitespace-nowrap text-[clamp(7rem,26vw,46rem)] leading-[0.78] tracking-[-0.04em] opacity-[0.96] [transform:scaleX(0.68)]"
+              className="display text-stroke-accent pointer-events-none absolute inset-0 z-0 hidden items-center justify-center overflow-hidden whitespace-nowrap text-[clamp(7rem,26vw,46rem)] leading-[0.78] tracking-[-0.04em] opacity-[0.96] [transform:scaleX(0.68)] md:flex"
+            >
+              Portafolio
+            </span>
+            <span
+              aria-hidden
+              className="display text-stroke-accent pointer-events-none absolute inset-x-0 top-[38%] z-0 flex -translate-y-1/2 items-center justify-center overflow-hidden whitespace-nowrap text-[clamp(4.2rem,18vw,20rem)] leading-[0.8] tracking-[-0.03em] opacity-[0.88] [transform:scaleX(0.72)] md:hidden"
             >
               Portafolio
             </span>

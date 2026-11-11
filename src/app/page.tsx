@@ -40,7 +40,6 @@ export default function Home() {
           <Marquee
             items={["Disponible para proyectos", "Prácticas", "Freelance", "2026"]}
             reverse
-            fast
           />
         </div>
 
