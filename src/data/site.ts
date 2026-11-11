@@ -7,7 +7,7 @@ export const basePath = "/elsanchezok";
 
 export const profile = {
   firstName: "Joseph",
-  lastName: "",
+  lastName: "Sánchez",
   role: "Programador en formación",
   headlineTop: "JOSEPH",
   headlineMiddle: "PROGRAMADOR",
@@ -15,7 +15,7 @@ export const profile = {
   tagline:
     "Tercero de bachillerato en Informática con orientación en Programación. Diseño y construyo interfaces que se sienten simples, rápidas y bien acabadas — y cada vez más, sistemas que aprenden.",
   location: "Disponible en remoto",
-  email: "hola@joseph.dev",
+  email: "joseph.sanchez@iteesa.edu.hn",
   availability: "Abierto a proyectos y prácticas",
   year: "2026",
   education: "3ro de bachillerato · Informática",
