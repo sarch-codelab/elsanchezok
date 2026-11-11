@@ -22,8 +22,9 @@ export function About() {
           <div className="lg:col-span-7">
             <Reveal>
               <p className="font-serif text-[clamp(1.65rem,3.2vw,2.75rem)] leading-[1.14] tracking-[-0.01em]">
-                Aprendo <span className="italic">construyendo</span>. Cada proyecto es una
-                excusa para escribir mejor código y entender un problema nuevo.
+                {about.lead.split("construyendo")[0]}
+                <span className="italic">construyendo</span>
+                {about.lead.split("construyendo")[1]}
               </p>
             </Reveal>
 

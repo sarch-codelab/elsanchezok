@@ -99,7 +99,7 @@ export function Hero() {
           <div className="relative order-1 flex justify-center lg:col-span-12">
             <span
               aria-hidden
-              className="display text-stroke-accent pointer-events-none absolute inset-0 z-0 flex items-center justify-center whitespace-nowrap text-[clamp(3.5rem,22vw,44rem)] leading-[0.8]"
+              className="display text-stroke-accent pointer-events-none absolute inset-x-0 top-1/2 z-0 flex -translate-y-[44%] items-center justify-center whitespace-nowrap text-[clamp(6rem,34vw,62rem)] leading-[0.72] tracking-[-0.04em] opacity-[0.95]"
             >
               Portafolio
             </span>
