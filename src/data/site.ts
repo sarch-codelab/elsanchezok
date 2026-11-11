@@ -215,11 +215,30 @@ export const process = [
   },
 ];
 
+export const infinihon = {
+  name: "Infinihon",
+  claim: "Infraestructura que mueve el futuro.",
+  intro:
+    "Mi marca personal de infraestructura tecnológica. Diseñamos, implementamos y protegemos la infraestructura que mantiene conectadas a las empresas modernas — desde redes MikroTik hasta cloud híbrido.",
+  url: "https://infinihon.vercel.app",
+  location: "Tegucigalpa, Honduras · 14.0818° N · 87.2068° W",
+  services: [
+    { id: "01", title: "Networking", desc: "MikroTik · Routing · VPN · MPLS · BGP", href: "https://infinihon.vercel.app/#servicios" },
+    { id: "02", title: "Cloud", desc: "AWS · Azure · Google Cloud · Híbrido", href: "https://infinihon.vercel.app/#servicios" },
+    { id: "03", title: "DevOps", desc: "Docker · Kubernetes · Terraform · Ansible", href: "https://infinihon.vercel.app/#servicios" },
+    { id: "04", title: "Security", desc: "Auditoría · Hardening · VPN", href: "https://infinihon.vercel.app/#servicios" },
+    { id: "05", title: "Monitoring", desc: "Prometheus · Grafana · Alertas", href: "https://infinihon.vercel.app/#servicios" },
+    { id: "06", title: "Custom Systems", desc: "Software · Automatización · Integraciones", href: "https://infinihon.vercel.app/#servicios" },
+  ],
+  process: ["Discover", "Design", "Build", "Deploy", "Monitor", "Scale"],
+  stack: ["MikroTik", "AWS", "Azure", "Docker", "Kubernetes", "Terraform", "Prometheus", "Node.js", "Next.js"],
+};
+
 export const navLinks = [
   { label: "Sobre mí", href: "#sobre-mi" },
   { label: "Stack", href: "#stack" },
   { label: "Proyectos", href: "#proyectos" },
   { label: "Trayectoria", href: "#trayectoria" },
-  { label: "Lab 3D", href: "#laboratorio" },
+  { label: "Infinihon", href: "#laboratorio" },
   { label: "Contacto", href: "#contacto" },
 ];
