@@ -45,13 +45,7 @@ export function Hero() {
 
         <div className="grid items-center gap-10 pb-10 pt-8 lg:grid-cols-12 lg:gap-10 lg:pb-14 lg:pt-12">
           <div className="order-2 flex min-w-0 flex-col lg:order-1 lg:col-span-7 lg:pr-6">
-            <Reveal>
-              <p className="meta text-muted">
-                Hola, soy {profile.firstName} — {profile.role}
-              </p>
-            </Reveal>
-
-            <h1 className="mt-4 select-none">
+            <h1 className="select-none">
               <Reveal as="span" delay={INTRO + 0.05} className="block">
                 <span className="display block text-[clamp(3.4rem,10vw,8.2rem)]">
                   {profile.headlineTop}
@@ -72,8 +66,14 @@ export function Hero() {
               </Reveal>
             </h1>
 
+            <Reveal delay={INTRO + 0.22}>
+              <p className="meta mt-4 text-muted">
+                Hola, soy {profile.firstName} — {profile.role}
+              </p>
+            </Reveal>
+
             <Reveal delay={INTRO + 0.28}>
-              <p className="mt-8 max-w-lg text-[0.98rem] leading-relaxed text-muted sm:text-base">
+              <p className="mt-6 max-w-lg text-[0.98rem] leading-relaxed text-muted sm:text-base">
                 {profile.tagline}
               </p>
             </Reveal>
