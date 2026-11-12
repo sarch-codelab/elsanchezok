@@ -43,19 +43,20 @@ export function Hero() {
 
         {/* TODO CENTRADO: imagen + PORTAFOLIO gigante detrás, ambos centrados */}
         <div className="flex flex-col items-center pb-10 pt-8 lg:pb-14 lg:pt-12">
+          {/* PORTAFOLIO ocupa todo el ancho del hero, centrado y sin recorte */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-x-0 top-[32%] z-0 flex justify-center overflow-hidden md:top-[38%]"
+          >
+            <span className="display text-stroke-accent hidden select-none whitespace-nowrap px-4 text-[clamp(4rem,10.5vw,11rem)] leading-none tracking-[-0.03em] opacity-[0.9] md:block">
+              Portafolio
+            </span>
+            <span className="display text-stroke-accent select-none whitespace-nowrap px-4 text-[clamp(2.6rem,13vw,4.8rem)] leading-none tracking-[-0.02em] opacity-[0.85] md:hidden">
+              Portafolio
+            </span>
+          </div>
+
           <div className="relative flex w-full max-w-[720px] justify-center">
-            {/* PORTAFOLIO centrado detrás de la imagen */}
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center overflow-hidden px-2"
-            >
-              <span className="display text-stroke-accent hidden select-none whitespace-nowrap text-[clamp(4.5rem,13vw,14rem)] leading-none tracking-[-0.03em] opacity-[0.9] md:block">
-                Portafolio
-              </span>
-              <span className="display text-stroke-accent select-none whitespace-nowrap text-[clamp(2.8rem,16vw,5.5rem)] leading-none tracking-[-0.02em] opacity-[0.85] md:hidden">
-                Portafolio
-              </span>
-            </div>
 
             <Reveal delay={INTRO + 0.18} y={40} className="w-full max-w-[460px]">
               <figure className="relative mx-auto w-full max-w-[460px]">
