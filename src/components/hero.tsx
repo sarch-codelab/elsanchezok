@@ -99,16 +99,16 @@ export function Hero() {
             </Reveal>
           </div>
 
-          <div className="relative order-1 flex min-w-0 justify-center overflow-hidden lg:order-2 lg:col-span-5">
-            {/* PORTAFOLIO confinado solo al área del retrato — lo primero que se ve es tu foto, luego la marca sutil */}
+          <div className="relative order-1 flex min-w-0 justify-center lg:order-2 lg:col-span-5">
+            {/* PORTAFOLIO gigante detrás de la foto — lo primero que se ve al entrar: tu retrato + marca */}
             <div
               aria-hidden
-              className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center overflow-hidden"
+              className="pointer-events-none absolute inset-x-[-18vw] inset-y-[-6%] z-0 flex items-center justify-center overflow-hidden"
             >
-              <span className="display text-stroke-accent hidden select-none whitespace-nowrap text-[clamp(4.5rem,14vw,18rem)] leading-none tracking-[-0.03em] opacity-[0.28] md:block">
+              <span className="display text-stroke-accent hidden select-none whitespace-nowrap text-[clamp(8rem,22vw,30rem)] leading-none tracking-[-0.04em] opacity-[0.88] [transform:scaleX(0.78)] md:block">
                 Portafolio
               </span>
-              <span className="display text-stroke-accent select-none whitespace-nowrap text-[clamp(3rem,28vw,7rem)] leading-none tracking-[-0.02em] opacity-[0.24] md:hidden">
+              <span className="display text-stroke-accent select-none whitespace-nowrap text-[clamp(4.2rem,30vw,10rem)] leading-none tracking-[-0.03em] opacity-[0.75] [transform:scaleX(0.82)] md:hidden">
                 Portafolio
               </span>
             </div>

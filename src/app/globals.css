@@ -103,7 +103,7 @@ body {
 }
 
 .text-stroke-accent {
-  -webkit-text-stroke: 0.02em var(--accent);
+  -webkit-text-stroke: 0.035em var(--accent);
   color: transparent;
 }
 
