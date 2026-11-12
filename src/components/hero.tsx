@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { basePath, profile, stats } from "@/data/site";
+import { AsciiPortrait } from "./ascii-portrait";
 import { IconArrowDownRight, IconArrowUpRight, IconSparkle } from "./icons";
 import { Reveal } from "./reveal";
 
@@ -112,30 +113,26 @@ export function Hero() {
             <Reveal delay={INTRO + 0.18} y={40}>
               <figure className="relative mx-auto w-full max-w-[460px]">
                 <div className="relative z-10 overflow-hidden border border-white/20 shadow-[0_40px_90px_-30px_rgba(0,0,0,0.85)]">
-                  <Image
+                  <AsciiPortrait
                     src={`${basePath}/joseph.webp`}
                     alt={`Retrato de ${profile.firstName}`}
-                    width={1100}
-                    height={1100}
-                    loading="eager"
                     sizes="(max-width: 1024px) 90vw, 38vw"
-                    className="aspect-[4/5] w-full object-cover object-center transition-transform duration-[1.2s] ease-out hover:scale-[1.03]"
                   />
 
-                  <span className="meta absolute left-0 top-0 bg-[#160b28]/85 px-3 py-1.5 text-[#f1efea] backdrop-blur-sm">
+                  <span className="meta pointer-events-none absolute left-0 top-0 bg-[#160b28]/85 px-3 py-1.5 text-[#f1efea] backdrop-blur-sm">
                     Retrato / 01
                   </span>
-                  <span className="meta absolute bottom-0 right-0 bg-[#f1efea]/90 px-3 py-1.5 text-[#0b0b0b] backdrop-blur">
+                  <span className="meta pointer-events-none absolute bottom-0 right-0 bg-[#f1efea]/90 px-3 py-1.5 text-[#0b0b0b] backdrop-blur">
                     {profile.year}
                   </span>
 
                   <span
                     aria-hidden
-                    className="absolute left-3 top-1/2 hidden h-6 w-px bg-white/30 sm:block"
+                    className="pointer-events-none absolute left-3 top-1/2 hidden h-6 w-px bg-white/30 sm:block"
                   />
                   <span
                     aria-hidden
-                    className="absolute bottom-3 left-1/2 hidden h-px w-6 bg-white/30 sm:block"
+                    className="pointer-events-none absolute bottom-3 left-1/2 hidden h-px w-6 bg-white/30 sm:block"
                   />
                 </div>
 
