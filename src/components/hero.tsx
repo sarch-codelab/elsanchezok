@@ -26,19 +26,18 @@ export function Hero() {
         <div className="grid-lines absolute inset-0 hidden opacity-25 md:block" />
       </div>
 
-      {/* PORTAFOLIO gigante — capa de fondo, fuera del grid para que ocupe todo el ancho y no rompa el responsive */}
-      <span
+      {/* PORTAFOLIO — marca de agua sutil detrás del retrato, no debe competir con tu foto */}
+      <div
         aria-hidden
-        className="display text-stroke-accent pointer-events-none absolute inset-x-0 top-[52%] z-0 hidden -translate-y-1/2 items-center justify-center overflow-hidden whitespace-nowrap text-[clamp(6rem,22vw,36rem)] leading-[0.78] tracking-[-0.04em] opacity-[0.92] [transform:scaleX(0.68)] md:flex"
+        className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center overflow-hidden"
       >
-        Portafolio
-      </span>
-      <span
-        aria-hidden
-        className="display text-stroke-accent pointer-events-none absolute inset-x-0 top-[38%] z-0 flex -translate-y-1/2 items-center justify-center overflow-hidden whitespace-nowrap text-[clamp(3rem,22vw,7.5rem)] leading-[0.8] tracking-[-0.03em] opacity-[0.82] [transform:scaleX(0.74)] md:hidden"
-      >
-        Portafolio
-      </span>
+        <span className="display text-stroke-accent hidden select-none whitespace-nowrap text-[clamp(5rem,16vw,22rem)] leading-none tracking-[-0.03em] md:block">
+          Portafolio
+        </span>
+        <span className="display text-stroke-accent select-none whitespace-nowrap text-[clamp(3.2rem,26vw,8rem)] leading-none tracking-[-0.02em] md:hidden">
+          Portafolio
+        </span>
+      </div>
 
       <div className="relative mx-auto max-w-[1500px] px-5 sm:px-8">
         <div className="meta flex flex-wrap items-center justify-between gap-3 border-b border-white/15 py-4 text-muted">

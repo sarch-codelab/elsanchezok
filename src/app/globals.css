@@ -103,8 +103,9 @@ body {
 }
 
 .text-stroke-accent {
-  -webkit-text-stroke: 0.032em var(--accent);
+  -webkit-text-stroke: 0.022em var(--accent);
   color: transparent;
+  opacity: 0.42;
 }
 
 @media (min-width: 768px) {
