@@ -43,20 +43,19 @@ export function Hero() {
 
         {/* TODO CENTRADO: imagen + PORTAFOLIO gigante detrás, ambos centrados */}
         <div className="flex flex-col items-center pb-10 pt-8 lg:pb-14 lg:pt-12">
-          {/* PORTAFOLIO ocupa todo el ancho del hero, centrado y sin recorte */}
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-x-0 top-[32%] z-0 flex justify-center overflow-hidden md:top-[38%]"
-          >
-            <span className="display text-stroke-accent hidden select-none whitespace-nowrap px-4 text-[clamp(4rem,10.5vw,11rem)] leading-none tracking-[-0.03em] opacity-[0.9] md:block">
-              Portafolio
-            </span>
-            <span className="display text-stroke-accent select-none whitespace-nowrap px-4 text-[clamp(2.6rem,13vw,4.8rem)] leading-none tracking-[-0.02em] opacity-[0.85] md:hidden">
-              Portafolio
-            </span>
-          </div>
-
           <div className="relative flex w-full max-w-[720px] justify-center">
+            {/* PORTAFOLIO centrado detrás de tu foto, tamaño reducido */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute left-1/2 top-1/2 z-0 flex w-[100vw] max-w-[1100px] -translate-x-1/2 -translate-y-1/2 justify-center overflow-hidden px-4"
+            >
+              <span className="display text-stroke-accent hidden select-none whitespace-nowrap text-[clamp(3.5rem,8vw,7.5rem)] leading-none tracking-[-0.02em] opacity-60 md:block">
+                Portafolio
+              </span>
+              <span className="display text-stroke-accent select-none whitespace-nowrap text-[clamp(2.2rem,11vw,4rem)] leading-none tracking-[-0.02em] opacity-60 md:hidden">
+                Portafolio
+              </span>
+            </div>
 
             <Reveal delay={INTRO + 0.18} y={40} className="w-full max-w-[460px]">
               <figure className="relative mx-auto w-full max-w-[460px]">
