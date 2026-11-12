@@ -26,6 +26,20 @@ export function Hero() {
         <div className="grid-lines absolute inset-0 hidden opacity-25 md:block" />
       </div>
 
+      {/* PORTAFOLIO gigante — capa de fondo, fuera del grid para que ocupe todo el ancho y no rompa el responsive */}
+      <span
+        aria-hidden
+        className="display text-stroke-accent pointer-events-none absolute inset-x-0 top-[52%] z-0 hidden -translate-y-1/2 items-center justify-center overflow-hidden whitespace-nowrap text-[clamp(6rem,22vw,36rem)] leading-[0.78] tracking-[-0.04em] opacity-[0.92] [transform:scaleX(0.68)] md:flex"
+      >
+        Portafolio
+      </span>
+      <span
+        aria-hidden
+        className="display text-stroke-accent pointer-events-none absolute inset-x-0 top-[38%] z-0 flex -translate-y-1/2 items-center justify-center overflow-hidden whitespace-nowrap text-[clamp(3rem,22vw,7.5rem)] leading-[0.8] tracking-[-0.03em] opacity-[0.82] [transform:scaleX(0.74)] md:hidden"
+      >
+        Portafolio
+      </span>
+
       <div className="relative mx-auto max-w-[1500px] px-5 sm:px-8">
         <div className="meta flex flex-wrap items-center justify-between gap-3 border-b border-white/15 py-4 text-muted">
           <span>Portafolio {profile.year} — Ed. 01</span>
@@ -42,7 +56,7 @@ export function Hero() {
         </div>
 
         <div className="grid items-center gap-10 pb-10 pt-8 lg:grid-cols-12 lg:gap-10 lg:pb-14 lg:pt-12">
-          <div className="order-2 flex flex-col lg:col-span-7">
+          <div className="order-2 flex min-w-0 flex-col lg:order-1 lg:col-span-7 lg:pr-6">
             <Reveal>
               <p className="meta text-muted">
                 Hola, soy {profile.firstName} — {profile.role}
@@ -97,20 +111,8 @@ export function Hero() {
             </Reveal>
           </div>
 
-          <div className="relative order-1 flex justify-center overflow-hidden lg:col-span-12">
-            <span
-              aria-hidden
-              className="display text-stroke-accent pointer-events-none absolute inset-0 z-0 hidden items-center justify-center overflow-hidden whitespace-nowrap text-[clamp(7rem,26vw,46rem)] leading-[0.78] tracking-[-0.04em] opacity-[0.96] [transform:scaleX(0.68)] md:flex"
-            >
-              Portafolio
-            </span>
-            <span
-              aria-hidden
-              className="display text-stroke-accent pointer-events-none absolute inset-x-0 top-[38%] z-0 flex -translate-y-1/2 items-center justify-center overflow-hidden whitespace-nowrap text-[clamp(4.2rem,18vw,20rem)] leading-[0.8] tracking-[-0.03em] opacity-[0.88] [transform:scaleX(0.72)] md:hidden"
-            >
-              Portafolio
-            </span>
-            <Reveal delay={INTRO + 0.18} y={40}>
+          <div className="relative order-1 flex min-w-0 justify-center lg:order-2 lg:col-span-5">
+            <Reveal delay={INTRO + 0.18} y={40} className="w-full max-w-[460px] min-w-0">
               <figure className="relative mx-auto w-full max-w-[460px]">
                 <div className="relative z-10 overflow-hidden border border-white/20 shadow-[0_40px_90px_-30px_rgba(0,0,0,0.85)]">
                   <AsciiPortrait
