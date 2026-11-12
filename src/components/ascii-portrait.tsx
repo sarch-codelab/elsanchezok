@@ -3,7 +3,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
 const CHARS = " ·:;+*?%#WM@█";
-// rampa de luminancia: de vacío a denso. Profesional y legible en monoespaciado.
 const FONT_FAMILY = "var(--font-jb), ui-monospace, SFMono-Regular, Menlo, monospace";
 
 type Cell = { ch: string; r: number; g: number; b: number; lum: number };
@@ -21,14 +20,13 @@ export function AsciiPortrait({
 }) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const overlayRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
-  const gridRef = useRef<{ cols: number; rows: number; cells: Cell[]; imgW: number; imgH: number } | null>(null);
+  const gridRef = useRef<{ cols: number; rows: number; cells: Cell[] } | null>(null);
   const [hovered, setHovered] = useState(false);
   const [ready, setReady] = useState(false);
   const [touched, setTouched] = useState(false);
-  // para luz del cursor
   const pointerRef = useRef({ x: 0.5, y: 0.5, active: false });
+  const rafIdRef = useRef<number | null>(null);
 
   const isActive = hovered || touched;
 
@@ -37,13 +35,11 @@ export function AsciiPortrait({
     const wrap = wrapRef.current;
     if (!img || !wrap || !img.complete || img.naturalWidth === 0) return;
 
-    // Resolución ASCII: 72 cols móviles / 88 cols desktop - balance nitidez vs performance
     const w = wrap.clientWidth;
-    const cols = w < 400 ? 64 : w < 520 ? 72 : 84;
-    // aspecto 4/5 del contenedor, corrección de celda monoespaciada (~0.58 ancho/alto)
+    const cols = w < 400 ? 64 : w < 520 ? 72 : 88;
     const containerAspect = 4 / 5;
     const charAspect = 0.58;
-    const rows = Math.round(cols * containerAspect / charAspect);
+    const rows = Math.round((cols * containerAspect) / charAspect);
 
     const tmp = document.createElement("canvas");
     tmp.width = cols;
@@ -51,7 +47,6 @@ export function AsciiPortrait({
     const tctx = tmp.getContext("2d", { willReadFrequently: true });
     if (!tctx) return;
 
-    // draw con object-cover: recorta centrado
     const iw = img.naturalWidth;
     const ih = img.naturalHeight;
     const scale = Math.max(cols / iw, rows / ih);
@@ -76,7 +71,7 @@ export function AsciiPortrait({
       const idx = Math.min(CHARS.length - 1, Math.floor((lum / 255) * (CHARS.length - 1)));
       cells.push({ ch: CHARS[idx], r, g, b, lum });
     }
-    gridRef.current = { cols, rows, cells, imgW: cols, imgH: rows };
+    gridRef.current = { cols, rows, cells };
     setReady(true);
   }, []);
 
@@ -100,79 +95,93 @@ export function AsciiPortrait({
     const cellW = W / cols;
     const cellH = H / rows;
 
-    // fondo
-    ctx.fillStyle = "#0d0a14";
-    ctx.fillRect(0, 0, W, H);
+    // Fondo TRANSPARENTE — no tapa la foto. Solo la lupa ASCII se dibuja.
+    ctx.clearRect(0, 0, W, H);
 
-    // leve viñeta
-    const grad = ctx.createRadialGradient(W * 0.5, H * 0.45, 0, W * 0.5, H * 0.45, W * 0.9);
-    grad.addColorStop(0, "rgba(185,166,232,0.06)");
-    grad.addColorStop(0.55, "rgba(0,0,0,0)");
-    grad.addColorStop(1, "rgba(2,0,8,0.55)");
-    ctx.fillStyle = grad;
-    ctx.fillRect(0, 0, W, H);
-
-    ctx.font = `${Math.round(cellH * 0.78)}px ${FONT_FAMILY}`;
-    ctx.textBaseline = "middle";
-    ctx.textAlign = "center";
+    if (!isActive || !pointerRef.current.active) return;
 
     const px = pointerRef.current.x;
     const py = pointerRef.current.y;
-    const hasPointer = pointerRef.current.active && isActive;
 
+    // Radios de la lupa (en coordenadas normalizadas 0..1)
+    const inner = 0.15; // núcleo nítido
+    const outer = 0.26; // borde difuminado
+    // compensación de aspecto para que el círculo no salga ovalado
+    const aspectK = rect.width / rect.height;
+
+    ctx.font = `${Math.round(cellH * 0.82)}px ${FONT_FAMILY}`;
+    ctx.textBaseline = "middle";
+    ctx.textAlign = "center";
+
+    // 1) velo oscuro solo dentro de la lupa para que el ASCII se lea sobre la foto
+    // lo dibujamos como rects por celda con degradado radial suave
+    for (let y = 0; y < rows; y++) {
+      for (let x = 0; x < cols; x++) {
+        const nx = x / cols;
+        const ny = y / rows;
+        const dx = (nx - px) * aspectK;
+        const dy = ny - py;
+        const d = Math.sqrt(dx * dx + dy * dy);
+        if (d > outer) continue;
+        // falloff suave
+        const t = d <= inner ? 1 : 1 - (d - inner) / (outer - inner);
+        const eased = t * t * (3 - 2 * t); // smoothstep
+        if (eased < 0.02) continue;
+        // velo: oscuro pero no negro puro, deja ver silueta
+        ctx.fillStyle = `rgba(13,10,20,${0.72 * eased})`;
+        ctx.fillRect(Math.floor(x * cellW), Math.floor(y * cellH), Math.ceil(cellW + 0.5), Math.ceil(cellH + 0.5));
+      }
+    }
+
+    // 2) caracteres ASCII solo dentro de la lupa
     for (let y = 0; y < rows; y++) {
       for (let x = 0; x < cols; x++) {
         const i = y * cols + x;
         const c = cells[i];
-        if (c.ch === " " || c.lum < 8) continue;
+        if (c.ch === " " || c.lum < 6) continue;
 
-        // silueta limpia: oscurece fondo, deja silueta en acentos claros
-        // mapea color original a paleta del sitio para que se vea premium
+        const nx = x / cols;
+        const ny = y / rows;
+        const dx = (nx - px) * aspectK;
+        const dy = ny - py;
+        const d = Math.sqrt(dx * dx + dy * dy);
+        if (d > outer) continue;
+
+        const t = d <= inner ? 1 : 1 - (d - inner) / (outer - inner);
+        const eased = t * t * (3 - 2 * t);
+        if (eased < 0.05) continue;
+
         const cx = (x + 0.5) * cellW;
         const cy = (y + 0.5) * cellH;
 
-        // luz de cursor: realza caracteres cerca del puntero
-        let boost = 0;
-        let glow = 0;
-        if (hasPointer) {
-          const dx = (x / cols - px);
-          const dy = (y / rows - py) * 0.85; // corrige aspecto
-          const d = Math.sqrt(dx * dx + dy * dy);
-          if (d < 0.14) {
-            boost = (0.14 - d) / 0.14; // 0..1
-            glow = boost;
-          }
+        // color: mezcla tono original hacia paleta clara para legibilidad sobre velo
+        const lumT = c.lum / 255;
+        let r = Math.round(c.r * 0.28 + 241 * 0.72 * (0.35 + 0.65 * lumT));
+        let g = Math.round(c.g * 0.28 + 239 * 0.72 * (0.35 + 0.65 * lumT));
+        let b = Math.round(c.b * 0.28 + 245 * 0.72 * (0.35 + 0.65 * lumT));
+
+        // realce en el centro de la lupa
+        if (eased > 0.75) {
+          const boost = (eased - 0.75) / 0.25;
+          r = Math.min(255, Math.round(r + (255 - r) * boost * 0.35));
+          g = Math.min(255, Math.round(g + (255 - g) * boost * 0.35));
+          b = Math.min(255, Math.round(b + (255 - b) * boost * 0.35));
         }
 
-        // paleta: mezcla color original hacia acento #b9a6e8 / #f1efea según luminancia
-        // sombras -> violeta profundo, luces -> crema
-        const t = c.lum / 255;
-        // base: acento frío para que se lea como silueta ASCII elegante
-        let r = Math.round(c.r * 0.42 + 185 * 0.58 * t + 241 * 0.12);
-        let g = Math.round(c.g * 0.42 + 166 * 0.58 * t + 239 * 0.12);
-        let b = Math.round(c.b * 0.42 + 232 * 0.58 * t + 234 * 0.12);
-
-        if (boost > 0) {
-          r = Math.min(255, Math.round(r + (255 - r) * boost * 0.55));
-          g = Math.min(255, Math.round(g + (255 - g) * boost * 0.55));
-          b = Math.min(255, Math.round(b + (255 - b) * boost * 0.55));
-        }
-
-        // caracteres muy oscuros -> más translúcidos para dar aire de silueta
-        const alpha = 0.68 + t * 0.32 + glow * 0.18;
-
+        const alpha = eased * (0.78 + lumT * 0.22);
         ctx.fillStyle = `rgba(${r},${g},${b},${alpha})`;
 
-        if (glow > 0.15) {
-          ctx.shadowColor = `rgba(${r},${g},${b},${0.35 * glow})`;
-          ctx.shadowBlur = cellH * 0.9 * glow;
+        // brillo sutil en núcleo
+        if (eased > 0.85 && lumT > 0.4) {
+          ctx.shadowColor = `rgba(${r},${g},${b},${0.28 * eased})`;
+          ctx.shadowBlur = cellH * 0.6;
         } else {
           ctx.shadowBlur = 0;
         }
 
-        // jitter sutil profesional cuando está activo: 1% de celdas tiembla
         let ch = c.ch;
-        if (isActive && Math.random() < 0.004 && t > 0.3 && t < 0.85) {
+        // flicker muy sutil solo dentro de la lupa
+        if (Math.random() < 0.003 * eased && lumT > 0.25 && lumT < 0.85) {
           const n = CHARS[Math.floor(Math.random() * CHARS.length)];
           if (n.trim()) ch = n;
         }
@@ -182,40 +191,64 @@ export function AsciiPortrait({
     }
     ctx.shadowBlur = 0;
 
-    // líneas de escaneo sutiles
-    ctx.fillStyle = "rgba(241,239,234,0.035)";
-    for (let y = 0; y < H; y += Math.round(cellH * 2 * dpr * 0.5)) {
-      ctx.fillRect(0, y, W, 1 * dpr);
-    }
+    // 3) anillo de la lupa
+    const cxPix = px * W;
+    const cyPix = py * H;
+    // radio en píxeles (promedio de inner/outer)
+    const rInner = inner * Math.min(W, H * aspectK) * 1.55;
+    const rOuter = outer * Math.min(W, H * aspectK) * 1.55;
 
-    // borde interior
-    ctx.strokeStyle = "rgba(241,239,234,0.12)";
+    ctx.strokeStyle = "rgba(241,239,234,0.9)";
+    ctx.lineWidth = 1.2 * dpr;
+    ctx.beginPath();
+    ctx.arc(cxPix, cyPix, rInner, 0, Math.PI * 2);
+    ctx.stroke();
+
+    ctx.strokeStyle = "rgba(185,166,232,0.55)";
     ctx.lineWidth = 1 * dpr;
-    ctx.strokeRect(0.5 * dpr, 0.5 * dpr, W - 1 * dpr, H - 1 * dpr);
+    ctx.setLineDash([6 * dpr, 6 * dpr]);
+    ctx.beginPath();
+    ctx.arc(cxPix, cyPix, rOuter, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // puntito central
+    ctx.fillStyle = "rgba(241,239,234,0.95)";
+    ctx.beginPath();
+    ctx.arc(cxPix, cyPix, 2 * dpr, 0, Math.PI * 2);
+    ctx.fill();
   }, [isActive]);
 
-  // loop suave solo cuando está activo
+  // loop solo activo — 60fps suave pero limitado
   useEffect(() => {
-    if (!ready || !isActive) return;
-    let id = 0;
+    if (!ready || !isActive) {
+      if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
+      // limpia cuando sale
+      const canvas = canvasRef.current;
+      const ctxNow = canvas?.getContext("2d");
+      if (canvas && ctxNow) ctxNow.clearRect(0, 0, canvas.width, canvas.height);
+      return;
+    }
+    let running = true;
     const tick = () => {
+      if (!running) return;
       render();
-      id = window.setTimeout(tick, 78) as unknown as number;
+      rafIdRef.current = window.requestAnimationFrame(tick);
     };
-    tick();
-    return () => clearTimeout(id);
+    rafIdRef.current = window.requestAnimationFrame(tick);
+    return () => {
+      running = false;
+      if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
+    };
   }, [ready, isActive, render]);
 
-  // primer render estático
-  useEffect(() => {
-    if (ready && !isActive) render();
-  }, [ready, isActive, render]);
-
+  // primera medida
   useEffect(() => {
     const img = imgRef.current;
     if (!img) return;
+    const onLoad = () => buildGrid();
     if (img.complete) buildGrid();
-    else img.addEventListener("load", buildGrid, { once: true });
+    else img.addEventListener("load", onLoad, { once: true });
     const onResize = () => buildGrid();
     window.addEventListener("resize", onResize);
     const ro = new ResizeObserver(buildGrid);
@@ -223,6 +256,7 @@ export function AsciiPortrait({
     return () => {
       window.removeEventListener("resize", onResize);
       ro.disconnect();
+      img.removeEventListener("load", onLoad);
     };
   }, [buildGrid]);
 
@@ -239,14 +273,21 @@ export function AsciiPortrait({
     };
   };
 
+  const handleEnter = (e: React.MouseEvent) => {
+    setHovered(true);
+    onPointerMove(e);
+  };
+
   return (
     <div
       ref={wrapRef}
-      className="group/ascii relative aspect-[4/5] w-full overflow-hidden bg-[#0d0a14]"
-      onMouseEnter={() => setHovered(true)}
+      className="group/ascii relative aspect-[4/5] w-full overflow-hidden bg-transparent"
+      onMouseEnter={handleEnter}
       onMouseLeave={() => {
         setHovered(false);
         pointerRef.current.active = false;
+        const c = canvasRef.current;
+        if (c) c.getContext("2d")?.clearRect(0, 0, c.width, c.height);
       }}
       onMouseMove={onPointerMove}
       onTouchStart={(e) => {
@@ -255,7 +296,7 @@ export function AsciiPortrait({
       }}
       onTouchMove={onPointerMove}
     >
-      {/* Imagen real: SEO + fallback + base para extraer luminancia */}
+      {/* Imagen real siempre visible — es la base */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         ref={imgRef}
@@ -266,38 +307,31 @@ export function AsciiPortrait({
         sizes={sizes}
         crossOrigin="anonymous"
         onLoad={buildGrid}
-        className="absolute inset-0 h-full w-full object-cover object-center transition duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/ascii:scale-[1.02] group-hover/ascii:opacity-0"
+        className="absolute inset-0 h-full w-full object-cover object-center"
         fetchPriority={priority ? "high" : "auto"}
       />
 
-      {/* Canvas ASCII */}
+      {/* Canvas transparente: solo la lupa ASCII */}
       <canvas
         ref={canvasRef}
         aria-hidden
-        className="absolute inset-0 h-full w-full transition-opacity duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
-        style={{ opacity: isActive && ready ? 1 : 0 }}
+        className="pointer-events-none absolute inset-0 h-full w-full"
+        style={{ opacity: isActive && ready ? 1 : 0, transition: "opacity 220ms ease" }}
       />
 
-      {/* UI overlay */}
+      {/* Hint */}
       <div
-        ref={overlayRef}
         aria-hidden
-        className="pointer-events-none absolute inset-0 flex flex-col justify-between p-0 transition-opacity duration-500"
-        style={{ opacity: isActive && ready ? 1 : 0 }}
+        className="pointer-events-none absolute inset-x-0 bottom-0 flex items-center justify-between bg-gradient-to-t from-black/45 to-transparent px-2.5 py-2 opacity-0 transition-opacity duration-300 group-hover/ascii:opacity-100"
+        style={{ opacity: isActive && ready ? 1 : undefined }}
       >
-        <div className="flex items-center justify-between px-3 py-2">
-          <span className="meta rounded bg-[#f1efea]/95 px-2 py-1 text-[10px] tracking-[0.14em] text-[#0b0b0b]">ASCII · SILUETA</span>
-          <span className="meta flex items-center gap-1.5 bg-[#160b28]/80 px-2 py-1 text-[#f1efea] backdrop-blur">
-            <span className="size-1.5 animate-pulse rounded-full bg-[#b9a6e8]" /> {ready ? "EN VIVO" : "CARGANDO"}
-          </span>
-        </div>
-        <div className="flex items-center justify-between bg-gradient-to-t from-[#0d0a14]/80 to-transparent px-3 py-2">
-          <span className="meta text-[#f1efea]/70">Mueve el cursor · toca en móvil</span>
-          <span className="meta hidden text-[#f1efea]/50 sm:inline">72×90 GLIFOS</span>
-        </div>
+        <span className="meta hidden text-white/80 sm:inline">Mueve el cursor — lupa ASCII</span>
+        <span className="meta text-white/70 sm:hidden">Toca y arrastra</span>
+        <span className="meta hidden items-center gap-1.5 text-white/60 sm:flex">
+          <span className="size-1.5 animate-pulse rounded-full bg-[#b9a6e8]" /> LUPA ACTIVA
+        </span>
       </div>
 
-      {/* Borde sutil siempre visible */}
       <span aria-hidden className="pointer-events-none absolute inset-0 border border-white/10" />
     </div>
   );
