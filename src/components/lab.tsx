@@ -1,6 +1,7 @@
 "use client";
 
-import { infinihon } from "@/data/site";
+import Image from "next/image";
+import { basePath, infinihon } from "@/data/site";
 import { IconArrowUpRight } from "./icons";
 import { Reveal } from "./reveal";
 import { SectionHeading } from "./section-heading";
@@ -20,7 +21,7 @@ export function Lab() {
               <span className="serif-italic lowercase">— mi marca</span>
             </>
           }
-          description="Infraestructura que mueve el futuro. Mi proyecto de marca personal para diseñar infraestructura desde Honduras."
+          description="Infraestructura que mueve el futuro. Mi marca personal de infraestructura tecnológica — desde Honduras."
         />
 
         <div className="mt-12 grid gap-10 md:mt-16 lg:grid-cols-12 lg:gap-12">
@@ -39,13 +40,19 @@ export function Lab() {
                 </div>
 
                 <div className="mt-10">
-                  <h3 className="display leading-[0.82] tracking-[-0.04em]">
-                    <span className="block text-[clamp(2.8rem,6vw,5rem)]">INF</span>
-                    <span className="block text-[clamp(2.8rem,6vw,5rem)]">INIHON</span>
-                  </h3>
+                  <Image
+                    src={`${basePath}/infinihon-logo.svg`}
+                    alt="Infinihon — logo"
+                    width={420}
+                    height={90}
+                    className="h-auto w-full max-w-[360px] sm:max-w-[420px]"
+                  />
                   <p className="meta mt-4 max-w-sm text-paper/60">
-                    INF INIHON / Technology & Infrastructure — arquitectura en capas: Network → Servers → Cloud → Applications → Monitoring.
+                    Infinihon / Technology &amp; Infrastructure — arquitectura en capas: Network → Servers → Cloud → Applications → Monitoring.
                   </p>
+                  <h3 className="display mt-5 text-[clamp(2.4rem,5vw,4rem)] tracking-[-0.04em]">
+                    Infinihon
+                  </h3>
                 </div>
 
                 <div className="mt-8 grid grid-cols-3 gap-3 border-t border-paper/15 pt-6">
