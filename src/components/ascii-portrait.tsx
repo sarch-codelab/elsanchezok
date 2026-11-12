@@ -190,33 +190,6 @@ export function AsciiPortrait({
       }
     }
     ctx.shadowBlur = 0;
-
-    // 3) anillo de la lupa
-    const cxPix = px * W;
-    const cyPix = py * H;
-    // radio en píxeles (promedio de inner/outer)
-    const rInner = inner * Math.min(W, H * aspectK) * 1.55;
-    const rOuter = outer * Math.min(W, H * aspectK) * 1.55;
-
-    ctx.strokeStyle = "rgba(241,239,234,0.9)";
-    ctx.lineWidth = 1.2 * dpr;
-    ctx.beginPath();
-    ctx.arc(cxPix, cyPix, rInner, 0, Math.PI * 2);
-    ctx.stroke();
-
-    ctx.strokeStyle = "rgba(185,166,232,0.55)";
-    ctx.lineWidth = 1 * dpr;
-    ctx.setLineDash([6 * dpr, 6 * dpr]);
-    ctx.beginPath();
-    ctx.arc(cxPix, cyPix, rOuter, 0, Math.PI * 2);
-    ctx.stroke();
-    ctx.setLineDash([]);
-
-    // puntito central
-    ctx.fillStyle = "rgba(241,239,234,0.95)";
-    ctx.beginPath();
-    ctx.arc(cxPix, cyPix, 2 * dpr, 0, Math.PI * 2);
-    ctx.fill();
   }, [isActive]);
 
   // loop solo activo — 60fps suave pero limitado
