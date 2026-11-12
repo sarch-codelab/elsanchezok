@@ -26,18 +26,7 @@ export function Hero() {
         <div className="grid-lines absolute inset-0 hidden opacity-25 md:block" />
       </div>
 
-      {/* PORTAFOLIO — marca de agua sutil detrás del retrato, no debe competir con tu foto */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center overflow-hidden"
-      >
-        <span className="display text-stroke-accent hidden select-none whitespace-nowrap text-[clamp(5rem,16vw,22rem)] leading-none tracking-[-0.03em] md:block">
-          Portafolio
-        </span>
-        <span className="display text-stroke-accent select-none whitespace-nowrap text-[clamp(3.2rem,26vw,8rem)] leading-none tracking-[-0.02em] md:hidden">
-          Portafolio
-        </span>
-      </div>
+      {/* PORTAFOLIO — solo como fondo del retrato, confinado para no invadir tu texto/botones */}
 
       <div className="relative mx-auto max-w-[1500px] px-5 sm:px-8">
         <div className="meta flex flex-wrap items-center justify-between gap-3 border-b border-white/15 py-4 text-muted">
@@ -110,7 +99,19 @@ export function Hero() {
             </Reveal>
           </div>
 
-          <div className="relative order-1 flex min-w-0 justify-center lg:order-2 lg:col-span-5">
+          <div className="relative order-1 flex min-w-0 justify-center overflow-hidden lg:order-2 lg:col-span-5">
+            {/* PORTAFOLIO confinado solo al área del retrato — lo primero que se ve es tu foto, luego la marca sutil */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center overflow-hidden"
+            >
+              <span className="display text-stroke-accent hidden select-none whitespace-nowrap text-[clamp(4.5rem,14vw,18rem)] leading-none tracking-[-0.03em] opacity-[0.28] md:block">
+                Portafolio
+              </span>
+              <span className="display text-stroke-accent select-none whitespace-nowrap text-[clamp(3rem,28vw,7rem)] leading-none tracking-[-0.02em] opacity-[0.24] md:hidden">
+                Portafolio
+              </span>
+            </div>
             <Reveal delay={INTRO + 0.18} y={40} className="w-full max-w-[460px] min-w-0">
               <figure className="relative mx-auto w-full max-w-[460px]">
                 <div className="relative z-10 overflow-hidden border border-white/20 shadow-[0_40px_90px_-30px_rgba(0,0,0,0.85)]">
