@@ -26,8 +26,6 @@ export function Hero() {
         <div className="grid-lines absolute inset-0 hidden opacity-25 md:block" />
       </div>
 
-      {/* PORTAFOLIO — solo como fondo del retrato, confinado para no invadir tu texto/botones */}
-
       <div className="relative mx-auto max-w-[1500px] px-5 sm:px-8">
         <div className="meta flex flex-wrap items-center justify-between gap-3 border-b border-white/15 py-4 text-muted">
           <span>Portafolio {profile.year} — Ed. 01</span>
@@ -43,76 +41,23 @@ export function Hero() {
           </span>
         </div>
 
-        <div className="grid items-center gap-10 pb-10 pt-8 lg:grid-cols-12 lg:gap-10 lg:pb-14 lg:pt-12">
-          <div className="order-2 flex min-w-0 flex-col lg:order-1 lg:col-span-7 lg:pr-6">
-            <h1 className="select-none">
-              <Reveal as="span" delay={INTRO + 0.05} className="block">
-                <span className="display block text-[clamp(3.4rem,10vw,8.2rem)]">
-                  {profile.headlineTop}
-                </span>
-              </Reveal>
-              <Reveal as="span" delay={INTRO + 0.12} className="block">
-                <span className="display text-outline block text-[clamp(2.1rem,7.1vw,5.9rem)]">
-                  {profile.headlineMiddle}
-                </span>
-              </Reveal>
-              <Reveal as="span" delay={INTRO + 0.2} className="block">
-                <span className="serif-italic mt-2 block text-[clamp(1.9rem,6.2vw,5rem)] leading-[0.95] text-accent">
-                  {profile.headlineAccent}
-                  <span className="blink" aria-hidden>
-                    _
-                  </span>
-                </span>
-              </Reveal>
-            </h1>
-
-            <Reveal delay={INTRO + 0.22}>
-              <p className="meta mt-4 text-muted">
-                Hola, soy {profile.firstName} — {profile.role}
-              </p>
-            </Reveal>
-
-            <Reveal delay={INTRO + 0.28}>
-              <p className="mt-6 max-w-lg text-[0.98rem] leading-relaxed text-muted sm:text-base">
-                {profile.tagline}
-              </p>
-            </Reveal>
-
-            <Reveal delay={INTRO + 0.34}>
-              <div className="mt-8 flex flex-wrap items-center gap-3">
-                <a href="#proyectos" className="btn btn-filled">
-                  Ver proyectos <IconArrowDownRight className="size-3.5" />
-                </a>
-                <a href="#contacto" className="btn">
-                  Hablemos <IconArrowUpRight className="size-3.5" />
-                </a>
-              </div>
-            </Reveal>
-
-            <Reveal delay={INTRO + 0.42}>
-              <div className="meta mt-10 flex items-center gap-3 text-muted">
-                <span className="inline-block h-8 w-px overflow-hidden bg-line">
-                  <span className="block h-full w-px animate-pulse bg-ink" />
-                </span>
-                Desliza para explorar
-              </div>
-            </Reveal>
-          </div>
-
-          <div className="relative order-1 flex min-w-0 justify-center lg:order-2 lg:col-span-5">
-            {/* PORTAFOLIO gigante detrás de la foto — lo primero que se ve al entrar: tu retrato + marca */}
+        {/* TODO CENTRADO: imagen + PORTAFOLIO gigante detrás, ambos centrados */}
+        <div className="flex flex-col items-center pb-10 pt-8 lg:pb-14 lg:pt-12">
+          <div className="relative flex w-full max-w-[720px] justify-center">
+            {/* PORTAFOLIO centrado detrás de la imagen */}
             <div
               aria-hidden
-              className="pointer-events-none absolute inset-x-[-18vw] inset-y-[-6%] z-0 flex items-center justify-center overflow-hidden"
+              className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center overflow-hidden"
             >
-              <span className="display text-stroke-accent hidden select-none whitespace-nowrap text-[clamp(8rem,22vw,30rem)] leading-none tracking-[-0.04em] opacity-[0.88] [transform:scaleX(0.78)] md:block">
+              <span className="display text-stroke-accent hidden select-none whitespace-nowrap text-[clamp(7rem,20vw,26rem)] leading-none tracking-[-0.04em] opacity-[0.88] [transform:scaleX(0.78)] md:block">
                 Portafolio
               </span>
-              <span className="display text-stroke-accent select-none whitespace-nowrap text-[clamp(4.2rem,30vw,10rem)] leading-none tracking-[-0.03em] opacity-[0.75] [transform:scaleX(0.82)] md:hidden">
+              <span className="display text-stroke-accent select-none whitespace-nowrap text-[clamp(3.8rem,26vw,9rem)] leading-none tracking-[-0.03em] opacity-[0.75] [transform:scaleX(0.82)] md:hidden">
                 Portafolio
               </span>
             </div>
-            <Reveal delay={INTRO + 0.18} y={40} className="w-full max-w-[460px] min-w-0">
+
+            <Reveal delay={INTRO + 0.18} y={40} className="w-full max-w-[460px]">
               <figure className="relative mx-auto w-full max-w-[460px]">
                 <div className="relative z-10 overflow-hidden border border-white/20 shadow-[0_40px_90px_-30px_rgba(0,0,0,0.85)]">
                   <AsciiPortrait
@@ -155,9 +100,7 @@ export function Hero() {
                       />
                     </defs>
                     <text className="fill-current font-mono text-[7.5px] uppercase tracking-[0.16em]">
-                      <textPath href="#hero-badge">
-                        Disponible · Proyectos · 2026 ·
-                      </textPath>
+                      <textPath href="#hero-badge">Disponible · Proyectos · 2026 ·</textPath>
                     </text>
                   </svg>
                   <span className="text-xl" aria-hidden>
@@ -172,6 +115,60 @@ export function Hero() {
               </figure>
             </Reveal>
           </div>
+
+          {/* Texto centrado debajo de la imagen */}
+          <div className="mt-10 flex w-full max-w-3xl flex-col items-center text-center">
+            <h1 className="select-none">
+              <Reveal as="span" delay={INTRO + 0.05} className="block">
+                <span className="display block text-[clamp(3.4rem,10vw,8.2rem)]">
+                  {profile.headlineTop}
+                </span>
+              </Reveal>
+              <Reveal as="span" delay={INTRO + 0.12} className="block">
+                <span className="display text-outline block text-[clamp(2.1rem,7.1vw,5.9rem)]">
+                  {profile.headlineMiddle}
+                </span>
+              </Reveal>
+              <Reveal as="span" delay={INTRO + 0.2} className="block">
+                <span className="serif-italic mt-2 block text-[clamp(1.9rem,6.2vw,5rem)] leading-[0.95] text-accent">
+                  {profile.headlineAccent}
+                  <span className="blink" aria-hidden>
+                    _
+                  </span>
+                </span>
+              </Reveal>
+            </h1>
+
+            <Reveal delay={INTRO + 0.22}>
+              <p className="meta mt-4 text-muted">Hola, soy {profile.firstName} — {profile.role}</p>
+            </Reveal>
+
+            <Reveal delay={INTRO + 0.28}>
+              <p className="mt-6 max-w-lg text-[0.98rem] leading-relaxed text-muted sm:text-base">
+                {profile.tagline}
+              </p>
+            </Reveal>
+
+            <Reveal delay={INTRO + 0.34}>
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+                <a href="#proyectos" className="btn btn-filled">
+                  Ver proyectos <IconArrowDownRight className="size-3.5" />
+                </a>
+                <a href="#contacto" className="btn">
+                  Hablemos <IconArrowUpRight className="size-3.5" />
+                </a>
+              </div>
+            </Reveal>
+
+            <Reveal delay={INTRO + 0.42}>
+              <div className="meta mt-10 flex items-center gap-3 text-muted">
+                <span className="inline-block h-8 w-px overflow-hidden bg-line">
+                  <span className="block h-full w-px animate-pulse bg-ink" />
+                </span>
+                Desliza para explorar
+              </div>
+            </Reveal>
+          </div>
         </div>
 
         <Reveal delay={INTRO + 0.5}>
@@ -181,9 +178,7 @@ export function Hero() {
                 key={stat.label}
                 className="bg-[#160b28]/80 px-4 py-6 backdrop-blur-sm sm:px-5 md:py-8 md:first:pl-0 md:last:pr-0"
               >
-                <p className="display text-[clamp(2rem,4vw,3.4rem)] leading-none">
-                  {stat.value}
-                </p>
+                <p className="display text-[clamp(2rem,4vw,3.4rem)] leading-none">{stat.value}</p>
                 <p className="meta mt-3 text-muted">{stat.label}</p>
               </div>
             ))}
