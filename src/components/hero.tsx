@@ -47,12 +47,12 @@ export function Hero() {
             {/* PORTAFOLIO centrado detrás de la imagen */}
             <div
               aria-hidden
-              className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center overflow-hidden"
+              className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center overflow-hidden px-2"
             >
-              <span className="display text-stroke-accent hidden select-none whitespace-nowrap text-[clamp(7rem,20vw,26rem)] leading-none tracking-[-0.04em] opacity-[0.88] [transform:scaleX(0.78)] md:block">
+              <span className="display text-stroke-accent hidden select-none whitespace-nowrap text-[clamp(4.5rem,13vw,14rem)] leading-none tracking-[-0.03em] opacity-[0.9] md:block">
                 Portafolio
               </span>
-              <span className="display text-stroke-accent select-none whitespace-nowrap text-[clamp(3.8rem,26vw,9rem)] leading-none tracking-[-0.03em] opacity-[0.75] [transform:scaleX(0.82)] md:hidden">
+              <span className="display text-stroke-accent select-none whitespace-nowrap text-[clamp(2.8rem,16vw,5.5rem)] leading-none tracking-[-0.02em] opacity-[0.85] md:hidden">
                 Portafolio
               </span>
             </div>
